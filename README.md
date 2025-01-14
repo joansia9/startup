@@ -11,7 +11,7 @@
 
 
 ## Elevator Pitch
-**"Beyoncé once said: 'People don’t make albums anymore, just quick little singles.' She’s right! Albums are gateways to a musician's soul and, more importantly, to your own."**  
+**Beyoncé once said: 'People don’t make albums anymore, just quick little singles.' She’s right! Albums are gateways to a musician's soul and, more importantly, to your own.**  
 
 With **Find Your Soul**, users can **discover albums**, **explore music** that resonates with them, and **connect with friends** through their shared love for music.  
 
