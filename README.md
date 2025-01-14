@@ -1,21 +1,36 @@
 # startup
 
 ## Description of Each technology
-HTML - Basic structural and organizational elements of the music app
-CSS - Styling and animating the music notes and spinning record animation especially for the favorites page where users create their favorite albums
-React - After the user logs in, they will have an option to play the game, chat with others, and find their favorite albums. The game is similar to a tinder style where they have to swipe right to like an album or swipe left to dislike an album
-Web service - Will most likely use JioSaavn for retrieving song  and album information and Lyrics.ovh to retrieve lyrics. 
-Authentication: A user will need to log in in order to play
-Database data: This application will be taking the favorite songs of each user
-WebSocket data: Users will be able to chat with each other about their favorite albums
+- **HTML**: Provides the basic structure and organization of the music app.  
+- **CSS**: Styles and animates the music notes and spinning record animation, particularly on the favorites page where users create their favorite albums.  
+- **React**: After logging in, users can play a game, chat with others, and find their favorite albums. The game is similar to a Tinder-style swipe feature, where users swipe right to like an album or left to dislike it.  
+- **Web Service**: We plan to use **JioSaavn** for retrieving song and album information and **Lyrics.ovh** to fetch lyrics.  
+- **Authentication**: Users must log in to access the app's features.  
+- **Database**: Stores users' favorite songs and albums.  
+- **WebSocket**: Enables real-time chat functionality, allowing users to discuss their favorite albums with friends.
+
 
 ## Elevator Pitch
-Beyonce once said “people don’t make albums anymore, just quick little singles” She’s right! Albums are a gateway, journey, bridge and literal piece to a musician's soul! but most importantly, to your soul as well. Finding the right album, music, and songs allows you to discover your own soul! Embrace the world of music, embark on your journey of self discovery, and let the power of music unite your loved ones with this app Find Your Soul. Don’t be a single, find the album! 
+**"Beyoncé once said: 'People don’t make albums anymore, just quick little singles.' She’s right! Albums are gateways to a musician's soul and, more importantly, to your own."**  
+
+With **Find Your Soul**, users can **discover albums**, **explore music** that resonates with them, and **connect with friends** through their shared love for music.  
+
+Embrace the world of music. **Find the album that speaks to your soul!** 🎵  
+Don’t be a single... **Find the album!**  
 
 ## Key features
-Swipe feature: swipe right or left to albums. The plan is to have an album pop up, with a song from that album playing in the background and the lyrics shown. From then on, the user will have an informed decision of whether they are interested in this album
-Favorite feature: Users can star (like) albums and can create a “favorites” feature. This will be individualized and will allow other users to look at their friends’ favorites.
-Chat feature: users will be able to speak to friends about their favorite albums and songs!
+### 🎶 **Swipe Feature**  
+- Users can swipe **right** or **left** on albums.  
+- When an album pops up, a **song from that album plays in the background**, along with **lyrics displayed on-screen**.  
+- Users make an informed decision to **like** or **dislike** an album.
+
+### ⭐ **Favorite Feature**  
+- Users can **star** (like) albums and create a personalized **Favorites list**.  
+- This list is **individualized** and allows users to view their **friends' favorite albums**.
+
+### 💬 **Chat Feature**  
+- Users can **chat** with friends about their favorite albums and songs.  
+- The chat feature is **real-time**, powered by **WebSocket**.
 
 ## Rough sketches 
 
