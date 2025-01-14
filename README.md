@@ -17,5 +17,5 @@ Swipe feature: swipe right or left to albums. The plan is to have an album pop u
 Favorite feature: Users can star (like) albums and can create a “favorites” feature. This will be individualized and will allow other users to look at their friends’ favorites.
 Chat feature: users will be able to speak to friends about their favorite albums and songs!
 
-Rough sketches
+## Rough sketches 
 
