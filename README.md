@@ -33,6 +33,5 @@ Don’t be a single... **Find the album!**
 - The chat feature is **real-time**, powered by **WebSocket**.
 
 ## Rough sketches 
-
-![Untitled (Draft)-2](https://github.com/user-attachments/assets/5cf8a0a8-8f26-4b80-8d7c-9c36b3694268)
 ![Untitled (Draft)-1](https://github.com/user-attachments/assets/adb8e536-5210-41af-a6a2-12380e5d6701)
+![Untitled (Draft)-2](https://github.com/user-attachments/assets/5cf8a0a8-8f26-4b80-8d7c-9c36b3694268)
