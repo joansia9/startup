@@ -1,83 +1,37 @@
-# Simon
+# startup
 
-[My Notes](notes.md)
+## Description of Each technology
+- **HTML**: Provides the basic structure and organization of the music app.  
+- **CSS**: Styles and animates the music notes and spinning record animation, particularly on the favorites page where users create their favorite albums.  
+- **React**: After logging in, users can play a game, chat with others, and find their favorite albums. The game is similar to a Tinder-style swipe feature, where users swipe right to like an album or left to dislike it.  
+- **Web Service**: We plan to use **JioSaavn** for retrieving song and album information and **Lyrics.ovh** to fetch lyrics.  
+- **Authentication**: Users must log in to access the app's features.  
+- **Database**: Stores users' favorite songs and albums.  
+- **WebSocket**: Enables real-time chat functionality, allowing users to discuss their favorite albums with friends.
 
-In 1978 Milton-Bradley, now Hasbro, released an electronic game named Simon. It was cutting edge at the time since there were so few electronic games, and all the cool kids had one.
 
-We are going to build a peer to peer multiplayer web application modeled after Simon. We will build it together by adding new functionality every time we learn a new technology. The example version of code and production deployment for each iteration are available to you. Your job will be to review the example and then deploy it to your production environment. The goal is to make you think about every line of code. Ask, "why is it done this way?" and "Is there a better way?". You can then take what you have learned, or even portions of the Simon code, and apply it to your Startup application.
+## Elevator Pitch
+**Beyoncé once said: 'People don’t make albums anymore, just quick little singles.' She’s right! Albums are gateways to a musician's soul and, more importantly, to your own.**  
 
-## 🚀 Specification Deliverable
+With **Find Your Soul**, users can **discover albums**, **explore music** that resonates with them, and **connect with friends** through their shared love for music.  
 
-Simon is a simple game where you repeat a sequence of color flashes. The longer sequence you repeat the higher your score is.
+Embrace the world of music. **Find the album that speaks to your soul!** 🎵  
+Don’t be a single... **Find the album!**  
 
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+## Key features
+### 🎶 **Swipe Feature**  
+- Users can swipe **right** or **left** on albums.  
+- When an album pops up, a **song from that album plays in the background**, along with **lyrics displayed on-screen**.  
+- Users make an informed decision to **like** or **dislike** an album.
 
-- [x] Proper use of Markdown
-- [x] A concise and compelling elevator pitch
-- [x] Description of key features
-- [x] Description of how you will use each technology
-- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+### ⭐ **Favorite Feature**  
+- Users can **star** (like) albums and create a personalized **Favorites list**.  
+- This list is **individualized** and allows users to view their **friends' favorite albums**.
 
-### Elevator pitch
+### 💬 **Chat Feature**  
+- Users can **chat** with friends about their favorite albums and songs.  
+- The chat feature is **real-time**, powered by **WebSocket**.
 
-A mind is a beautiful thing, but it needs stimulation. Lights, color, sound, and action. Simon give you hours of fun as you complete to remember the longest sequence of colors. See if you can top the charts with you efforts. Receive automatic notification of how your friends are doing.
-
-### Design
-
-![Design](designDiagram.png)
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-```mermaid
-sequenceDiagram
-    actor User
-    User->>Login: Enter login information
-    Login->>About: See about information
-    About-->>Login: Login
-    About->>About: Read inspirational quote
-    Login->>Play: Start game
-    Play->>Play: repeat sequences
-    Play->>Play: View other player's game notifications
-    Play-->>Login: Logout
-    Login-->>Scores: view high scores
-```
-
-### Key features
-
-- Login, logout, and register
-- See high scores
-- Receive notifications for other player's achievements
-- Play by repeating color sequences
-- See a description of the app
-- Read inspirational quotes
-
-### Technologies
-
-I am going to use the required technologies in the following ways.
-
-- **HTML** - Four different views, login/register controls, play, scoreboard, and about.
-- **CSS** - Complementary color scheme, responsive design, button highlighting during play.
-- **React** - Single page application with routing between views, reactive user controls, and state hooks.
-- **Service** - Endpoints for authentication, storing/retrieving scores. Third party call to get inspirational quotes.
-- **DB/Login** - Stores authentication and scores.
-- **WebSocket** - Broadcast user's game notifications.
-
-## 🚀 AWS deliverable
-
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
-
-- [x] **Server deployed and accessible with custom domain name** - [My server link](https://simon.cs260.click).
-
-## 🚀 HTML deliverable
-
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
-
-- [x] **HTML pages** - Four different pages. One for each view. `index.html` (Login), `play.html`, `scores.html`, and `about.html`.
-- [x] **Proper HTML element usage** - I spent a lot of time learning about elements. I used header, footer, main, nav, img, a, fieldset, input, button, form, and many more.
-- [x] **Links** - Links between views.
-- [x] **Text** - About page has text.
-- [x] **3rd party API placeholder** - About page has a place to display an inspirational quote.
-- [x] **Images** - Image is displayed on the about page.
-- [x] **Login placeholder** - Placeholder for auth on the login page.
-- [x] **DB data placeholder** - High scores displayed on scores page.
-- [x] **WebSocket placeholder** - The play page has a text area that will show what other user notifications.
+## Rough sketches 
+![Untitled (Draft)-1](https://github.com/user-attachments/assets/adb8e536-5210-41af-a6a2-12380e5d6701)
+![Untitled (Draft)-2](https://github.com/user-attachments/assets/5cf8a0a8-8f26-4b80-8d7c-9c36b3694268)
