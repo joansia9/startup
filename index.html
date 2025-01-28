@@ -4,12 +4,9 @@
 20% HTML pages for each component of your application [x]
 10% Proper use of HTML tags including BODY, NAV, MAIN, HEADER, FOOTER [x]
 10% Links between pages as necessary [x]
-10% Application textual content
-10% Placeholder for 3rd party service calls
 10% Application images
-10% Login placeholder, including user name display
-10% Database data placeholder showing content stored in the database
-10% WebSocket data placeholder showing where realtime communication will go 
+
+
 -->
 
 <!-- 10% Proper use of HTML tags including BODY[x], NAV[x], MAIN[x], HEADER[x], FOOTER[x]-->
@@ -23,21 +20,27 @@
   <body>
     <!-- Use header, main, and footer elements to give semantic structure -->
     <header>
-      <h1>hey friend! check this out<sup>&reg;</sup></h1>
+      <h1>hey friend! welcome to my QUOTE swamp</h1>
       <img src = "shrek.png"
       alt = "quotations"
       width = 100
       >
-
+      <article>
+        <h1>Home</h1>
+        <p>This is a home page!</p>
+        <p>PLACE HOLDER FOR 3RD PARTY SERVICE CALLS trying to generate quotes here too</p>
+      </article>
       <!-- Navigation eleents -->
       <nav>
         <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
         <menu>
+          <ul>
           <!--10% Links between pages as necessary-->
           <li><a href="index.html">Favorites!</a></li>
           <li><a href="play.html">Searching for Quotes</a></li>
           <li><a href="scores.html">Friends!</a></li>
           <li><a href="about.html">Abouts</a></li>
+        </ul>
         </menu>
       </nav>
 
@@ -46,7 +49,9 @@
     </header>
 
     <main>
-      <h1>Log in for some quotes broski</h1>
+      <!--10% Login placeholder, including user name display-->
+      <h1>Log in PLACEHOLDERRR</h1>
+      <h2>Log in for some quotes broski</h2>
       <form method="get" action="play.html">
         <div>
           <span>@</span>
@@ -56,8 +61,8 @@
           <span>🔒</span>
           <input type="password" placeholder="password" />
         </div>
-        <button type="submit">Login</button>
-        <button type="submit">Create</button>
+        <button type="submit">getInTheSwamp</button>
+        <button type="submit">CreateTheSwamp</button>
       </form>
     </main>
 
@@ -68,4 +73,36 @@
       <a href="https://github.com/joansia9/startup.git">GitHub</a>
     </footer>
   </body>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    header {
+      background-color: rgb(167, 227, 187);
+      text-align: center;
+      padding: 2px;
+      font-size: 25px;
+      color: white;
+    }
+    nav {
+      ul
+      {
+    list-style-type: none;
+      }
+    }
+    article {
+      float: left;
+      padding: 20px;
+      width: 70%;
+      background-color: #88bb8a;
+      height: 300px; 
+    }
+    footer {
+      background-color: rgb(140, 176, 147);
+      padding: 10px;
+      text-align: center;
+      color: white;
+    }
+   
+  </style>
 </html>

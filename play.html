@@ -4,103 +4,129 @@
     <meta charset="UTF-8" />
     <!-- Tell browsers not to scale the viewport automatically -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simon</title>
+    <title>Quote Finder</title>
     <link rel="icon" href="favicon.ico" />
   </head>
+  
   <body>
     <!-- Use header, main, and footer elements to give semantic structure -->
     <header>
-      <h1>Simon<sup>&reg;</sup></h1>
+      <h1><ul>QUOTE FINDER</ul></h1>
 
       <!-- Navigation elements -->
       <nav>
         <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
         <menu>
-          <li><a href="index.html">Favorites!</a></li>
-          <li><a href="play.html">Searching for Quotes</a></li>
-          <li><a href="scores.html">Friends!</a></li>
-          <li><a href="about.html">Abouts</a></li>
+          <ul>
+            <!--10% Links between pages as necessary-->
+            <li><a href="index.html">Favorites!</a></li>
+            <li><a href="play.html">Searching for Quotes</a></li>
+            <li><a href="scores.html">Friends!</a></li>
+            <li><a href="about.html">Abouts</a></li>
+          </ul>
         </menu>
       </nav>
 
       <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
       <hr />
     </header>
-
+    
     <main>
-      <div class="players">
-        Player:
-        <span class="player-name">Mystery player</span>
+      <div class="quotes">
+       quotes
+        <span class="listed-quotes">Mystery player</span>
       </div>
-      <ul class="notification">
-        <li class="player-name">Tim started a new game</li>
-        <li class="player-name">Ada started a new game</li>
-        <li class="player-name">Tim scored 337</li>
+      <h1> WEBSOCKET PLACEHOLDE#R: api to generate quote/ realtime likes</h1>
+
+      <div class="container">
+        <h1>Random Quote Generator</h1>
+        <p id="quote">Click the button to get a quote!</p>
+        <button onclick="generateQuote()">Get Quote</button>
+      </div>
+
+      <div class="box">
+        I am a QUOTE box!
+      </div>
+
+      <h1>another placeholder for database to store liked/saved quotes</h1>
+      <ul class="saved">
+        <li class="listed-quotes">quote1 saved</li>
+        <li class="listed-quotes">quote2 saved</li>
+        <li class="listed-quotes">quote3 saved</li>
       </ul>
+      <footer>
+        <hr />
+        <span class="text-reset">joanieeee</span>
+        <br />
+        <a href="https://github.com/joansia9/startup.git">GitHub</a>
+      </footer>
+    </body>
+      <style>
+        * {
+          box-sizing: border-box;
+        }
+        header {
+          background-color: rgb(167, 227, 187);
+          text-align: center;
+          padding: 2px;
+          font-size: 25px;
+          color: white;
+        }
+        nav {
+      ul
+      { list-style-type: none; }
+    }
+  
+        article {
+          float: left;
+          padding: 20px;
+          width: 70%;
+          background-color: #88bb8a;
+          height: 300px; 
+          align-items: center;
+          Justify-content: center;
+          text-align: center; 
+        }
+        button {
+        padding: 20px 20px;
+        background: #90a991;
+        margin: 20px auto;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        Justify-content: center;
+        text-align: center; 
+        margin-top: 20px; 
+        font-family: Arial, sans-serif;
+        border: 2px solid #333; /* Border around the box */
+        border-radius: 5px;
+        cursor: pointer;
+        }
+        button:hover {
+          background: #c6ae91;
+        }
+        .box {
+        width: 300px; 
+        height: 300px; 
+        background-color: rgb(173, 230, 182); /* Background color */
+        border: 2px solid #333; /* Border around the box */
+        border-radius: 10px; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        font-size: 18px;
+        margin: 20px auto; 
+        }
+        footer {
+          background-color: rgb(140, 176, 147);
+          padding: 10px;
+          text-align: center;
+          color: white;
+        }
+        
+       
+      </style>
 
-      <!-- More formatting with old style HTML -->
-      <br />
-
-      <div>
-        <label for="count">Score</label>
-        <input type="text" id="count" value="--" readonly />
-      </div>
-
-      <br />
-
-      <div>
-        <button>Reset</button>
-      </div>
-
-      <br />
-
-      <div>
-        <table>
-          <tr>
-            <td>
-              <button>
-                <svg aria-hidden="true" viewBox="0 0 100 100" height="100" width="100">
-                  <!-- SVG
-                    M move <to x,y>
-                    Q quadratic curve <control point x,y> <to x,y>
-                -->
-                  <path d="M 95,5 95,95 5,95 Q 5,5 95,5" fill="green" />
-                </svg>
-              </button>
-            </td>
-            <td>
-              <button>
-                <svg aria-hidden="true" viewBox="0 0 100 100" height="100" width="100">
-                  <path d="M5,5 5,95 95,95 Q 95,5 5,5" fill="red" />
-                </svg>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button>
-                <svg aria-hidden="true" viewBox="0 0 100 100" height="100" width="100">
-                  <path d="M5,5 95,5 95,95 Q 5,95 5,5" fill="blue" />
-                </svg>
-              </button>
-            </td>
-            <td>
-              <button>
-                <svg aria-hidden="true" viewBox="0 0 100 100" height="100" width="100">
-                  <path d="M95,5 5,5 5,95 Q 95,95 95,5" fill="yellow" />
-                </svg>
-              </button>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </main>
-
-    <footer>
-      <hr />
-      <span class="text-reset">Author Name(s)</span>
-      <br />
-      <a href="https://github.com/webprogramming260/simon-html">GitHub</a>
-    </footer>
-  </body>
+      
 </html>

@@ -8,14 +8,17 @@
   </head>
   <body>
     <header>
-      <h1>Simon<sup>&reg;</sup></h1>
+      <h1>About Page</h1>
 
       <nav>
         <menu>
-          <li><a href="index.html">Favorites!</a></li>
-          <li><a href="play.html">Searching for Quotes</a></li>
-          <li><a href="scores.html">Friends!</a></li>
-          <li><a href="about.html">Abouts</a></li>
+          <ul>
+            <!--10% Links between pages as necessary-->
+            <li><a href="index.html">Favorites!</a></li>
+            <li><a href="play.html">Searching for Quotes</a></li>
+            <li><a href="scores.html">Friends!</a></li>
+            <li><a href="about.html">Abouts</a></li>
+          </ul>
         </menu>
       </nav>
 
@@ -25,14 +28,17 @@
     <main>
       <div id="Shrek" class="picture-box"><img width="100px" src="shrekOnTheGround.png" alt=random /></div>
 
+       <!--10% APPLICATION CONTENT-->
+       <h1>Application content!</h1>
       <p>
         Hey guys! You like pinterest?
       </p>
-
       <p>
         You need a little pick me up? these quotes will get you THROUGH IT!
       </p>
-
+      <p>
+        This app is designed to help you find and save the words that move you.
+      </p>
       <div id="quote">
         <div>“Onions have layers, ogres have layers. You get it? We both have layers"</div>
         <div>- Shrek the ogre</div>
@@ -41,9 +47,41 @@
 
     <footer>
       <hr />
-      <span class="text-reset">Author Name(s)</span>
+      <span class="text-reset">joanieeee</span>
       <br />
-      <a href="https://github.com/webprogramming260/simon-html">GitHub</a>
+      <a href="https://github.com/joansia9/startup.git">GitHub</a>
     </footer>
   </body>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    header {
+      background-color: rgb(167, 227, 187);
+      text-align: center;
+      padding: 2px;
+      font-size: 25px;
+      color: white;
+    }
+    nav {
+      ul
+      {
+    list-style-type: none;
+      }
+    }
+    article {
+      float: left;
+      padding: 20px;
+      width: 70%;
+      background-color: #88bb8a;
+      height: 300px; 
+    }
+    footer {
+      background-color: rgb(140, 176, 147);
+      padding: 10px;
+      text-align: center;
+      color: white;
+    }
+   
+  </style>
 </html>
