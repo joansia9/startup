@@ -4,7 +4,7 @@
 - **HTML**: Provides the basic structure and organization of the quotes app
 - **CSS**: Color and maybe pictures associated with the quotes to create a "calming" feeling for the users  
 - **React**: After logging in, users have the ability to press a button to generate random quotes and like the quote
-- **Web Service**: We plan to use **Kanye.rest** **Buddah Quotes API **  **Dictum api ** to generate quotes.  
+- **Web Service**: We plan to use **Kanye.rest** **Buddah Quotes API**  **Dictum api** to generate quotes.  
 - **Authentication**: Users must log in to access the app's features.  
 - **Database**: Stores users' favorite quotes and there will be a live likes list.  
 - **WebSocket**: Enables real-time chat functionality, allowing users to discuss their quotes with friends and see their liked quotes.
