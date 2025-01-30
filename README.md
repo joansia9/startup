@@ -30,8 +30,8 @@
 
 ## HTML 
  HTML pages - 4 pages
- Links - there will be a login, favorite, about, and play page
- Text - the quotes and favorite quotes will be in text format
- Images - I added images of shrek
- DB/Login - In the login page there will be a authentication and in the favorites class, there will hold a database of favorites
- WebSocket - There will be a live likes and an API generating the quotes
+ - Links - there will be a login, favorite, about, and play page
+ - Text - the quotes and favorite quotes will be in text format
+ - Images - I added images of shrek
+ - DB/Login - In the login page there will be a authentication and in the favorites class, there will hold a database of favorites
+ - WebSocket - There will be a live likes and an API generating the quotes
