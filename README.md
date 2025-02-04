@@ -35,6 +35,7 @@
  - Images - I added images of shrek
  - DB/Login - In the login page there will be a authentication and in the favorites class, there will hold a database of favorites
  - WebSocket - There will be a live likes and an API generating the quotes
+<<<<<<< HEAD
 
 ## CSS
 - Header, footer, and main content body [x]
@@ -43,3 +44,5 @@
 - Application elements: Used good contrast and whitespace/padding/margins, and buttons
 - Application text content: Consistent fonts and a font hierarchy
 - Application images: responsive images 
+=======
+>>>>>>> 91520de (trying again)
