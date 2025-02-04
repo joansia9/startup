@@ -16,15 +16,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Joan's Cool Startup for QUOTES</title>
     <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <!-- Use header, main, and footer elements to give semantic structure -->
     <header>
-      <h1>hey friend! welcome to my QUOTE swamp</h1>
-      <img src = "shrek.png"
-      alt = "quotations"
-      width = 100
-      >
+      <h1 id = "main-title">Swamp of Quotes</h1>
       <article>
         <h1>Home</h1>
         <p>This is a home page!</p>
@@ -38,7 +35,7 @@
           <!--10% Links between pages as necessary-->
           <li><a href="index.html">Favorites!</a></li>
           <li><a href="play.html">Searching for Quotes</a></li>
-          <li><a href="scores.html">Friends!</a></li>
+          <li><a href="friend.html">Friends!</a></li>
           <li><a href="about.html">Abouts</a></li>
         </ul>
         </menu>
@@ -50,19 +47,19 @@
 
     <main>
       <!--10% Login placeholder, including user name display-->
-      <h1>Log in PLACEHOLDERRR</h1>
-      <h2>Log in for some quotes broski</h2>
+      <h2 id = "loginHeader">Log in for some quotes broski</h2>
+      <img src = "shrek.png" class= "shrekster" >
       <form method="get" action="play.html">
-        <div>
+        <div class="login-email-container">
           <span>@</span>
           <input type="text" placeholder="your@email.com" />
+          <button type="submit">getInTheSwamp</button>
         </div>
-        <div>
+        <div class="password-container">
           <span>🔒</span>
           <input type="password" placeholder="password" />
+          <button type="submit">CreateTheSwamp</button>
         </div>
-        <button type="submit">getInTheSwamp</button>
-        <button type="submit">CreateTheSwamp</button>
       </form>
     </main>
 
@@ -73,36 +70,4 @@
       <a href="https://github.com/joansia9/startup.git">GitHub</a>
     </footer>
   </body>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    header {
-      background-color: rgb(167, 227, 187);
-      text-align: center;
-      padding: 2px;
-      font-size: 25px;
-      color: white;
-    }
-    nav {
-      ul
-      {
-    list-style-type: none;
-      }
-    }
-    article {
-      float: left;
-      padding: 20px;
-      width: 70%;
-      background-color: #88bb8a;
-      height: 300px; 
-    }
-    footer {
-      background-color: rgb(140, 176, 147);
-      padding: 10px;
-      text-align: center;
-      color: white;
-    }
-   
-  </style>
 </html>

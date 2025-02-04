@@ -36,6 +36,9 @@
  - DB/Login - In the login page there will be a authentication and in the favorites class, there will hold a database of favorites
  - WebSocket - There will be a live likes and an API generating the quotes
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 73e1651 (CSS update)
 
 ## CSS
 - Header, footer, and main content body [x]
@@ -44,5 +47,8 @@
 - Application elements: Used good contrast and whitespace/padding/margins, and buttons
 - Application text content: Consistent fonts and a font hierarchy
 - Application images: responsive images 
+<<<<<<< HEAD
 =======
 >>>>>>> 91520de (trying again)
+=======
+>>>>>>> 73e1651 (CSS update)

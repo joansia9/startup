@@ -1,0 +1,109 @@
+p {
+    box-sizing: border-box;
+  }
+  header {
+    background-color: rgb(167, 227, 187);
+    text-align: center;
+    padding: 2px;
+    font-size: 25px;
+    color: white;
+    border-radius: 50px; /* Round the corners */
+  }
+  :root {
+    font: 1.5em sans-serif;
+  }
+  
+  aside {
+    padding: 3em;
+    margin: 0.5em;
+    border: hsl(0, 100%, 20%) solid thick;
+    background: hsl(0, 50%, 50%);
+    border-radius: 50px; /* Round the corners */
+    float: inline-end;
+  }
+  /*
+  body{
+    background-image: url("fun\ fact\ shrek.png");
+    background-repeat: no-repeat;
+  }
+    */
+  nav {
+    ul { list-style-type: none; }
+    border-radius: 50px; /* Round the corners */
+  }
+  nav a:hover {
+    background-color: rgb(85, 145, 111);
+    border-radius: 5px;
+  }
+  article {
+    float: left;
+    padding: 20px;
+    width: 70%;
+    background-color: #88bb8a;
+    height: 300px; 
+  }
+  footer {
+    background-color: rgb(140, 176, 147);
+    padding: 10px;
+    text-align: center;
+    border-radius: 50px; /* Round the corners */
+    color: white;
+  }
+  .fly-in {
+    animation: fly-from-left 1s ease-out;
+  }
+  @keyframes fly-from-left {
+    0% {
+      transform: translateX(-200%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+  .shreksterSign {
+    width: 150px; /* Adjust width */
+    height: 150px; /* Maintain aspect ratio */
+    border: 1px solid green; /* Add a border */
+    border-radius: 50px; /* Round the corners */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+aside {
+    padding: 1em;  /* Reduce padding */
+    margin: 0.5em; /* Reduce margin */
+    border: 3px solid hsl(155, 10%, 20%);
+    background: hsl(130, 36%, 64%);
+    border-radius: 50px; /* Round the corners */
+    max-width: 250px; /* Ensures it doesn’t grow too large */
+  }
+  section {
+    padding: 0.25em;
+    margin-bottom: 0.5em;
+    flex: 2;
+  }
+  @media (orientation: portrait) {
+    body {
+      flex-direction: column;
+    }
+  }
+  @media ((orientation: portrait) and (max-height: 500px)) {
+    aside {
+      display: column;
+    }
+  }
+  #appTitle {
+    text-align: center;
+  }
+  #Shrek {
+    width: 120px; /* Set the width for the div */
+    margin: 0 auto; /* Center horizontally */
+    text-align: center; /* Center the image inside */
+}
+
+#Shrek img {
+    width: 100px; /* Set the image width */
+}
+
+  
