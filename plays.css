@@ -57,6 +57,38 @@ nav a:hover {
   button:hover {
     background: #c6ae91;
   }
+  .saved {
+    display: table;
+    width: 50%;  /* Set table width to 50% of the container */
+    margin: 0 auto;  /* Center the table horizontally */
+    border-collapse: collapse;
+    border: 2px solid #09392d;
+  }
+
+  .listed-quotes {
+    display: table-row;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+
+  .listed-quotes::before {
+    content: " ";
+    display: table-cell;
+    padding: 8px;
+    text-align: center;
+  }
+  /* Make the table responsive */
+  @media (max-width: 700px) {
+    .saved {
+      width: 70%;  /* On smaller screens, take up more width */
+    }
+  }
+
+  @media (max-width: 400px) {
+    .saved {
+      width: 40%;  /* On very small screens, take up almost full width */
+    }
+  }
   .box {
   width: 300px; 
   height: 300px; 
