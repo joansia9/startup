@@ -1,0 +1,24 @@
+{
+  "name": "simon-html",
+  "version": "1.0.0",
+  "description": "## Description of Each technology - **HTML**: Provides the basic structure and organization of the quotes app - **CSS**: Color and maybe pictures associated with the quotes to create a \"calming\" feeling for the users   - **React**: After logging in, users have the ability to press a button to generate random quotes and like the quote - **Web Service**: We plan to use **Kanye.rest** **Buddah Quotes API**  **Dictum api** to generate quotes.   - **Authentication**: Users must log in to access the app's features.   - **Database**: Stores users' favorite quotes and there will be a live likes list.   - **WebSocket**: Enables real-time chat functionality, allowing users to discuss their quotes with friends and see their liked quotes.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^6.1.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "react": "^19.0.0",
+    "react-bootstrap": "^2.10.9",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.1.5"
+  }
+}
