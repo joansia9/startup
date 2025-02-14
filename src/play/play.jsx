@@ -1,5 +1,6 @@
 import React from 'react';
 import './play.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function Play() {
   return (
@@ -24,5 +25,14 @@ export function Play() {
         <li class="listed-quotes">quote3 saved</li>
       </ul>
     </main>
+  );
+}
+
+export function NavButton({ text, url }) {
+  const navigate = useNavigate();
+  return (
+    <Button variant='primary' onClick={() => navigate({ url })}>
+      {text}
+    </Button>
   );
 }

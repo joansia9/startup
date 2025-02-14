@@ -13,15 +13,16 @@ export default function App() {
   <BrowserRouter>
   <div className="app bg-light-green text-light">
   <header className="container-fluid">
-    <nav className="navbar fixed-top navbar-dark">
-      <article>
-      <div className="navbar-brand">
+  <div className="navbar-brand">
       Shrek<sup>&reg;</sup>
     </div>
         <p>PLACE HOLDER FOR 3RD PARTY SERVICE CALLS trying to generate quotes here too</p>
-      </article>
-      <menu className="navbar-nav">
-      <ul>
+
+    </header>
+    <article className="container-fluid">
+    <nav>
+    <menu className="navbar-nav">
+      
     <li className="nav-item">
       <NavLink className="nav-link" to="">
         Login
@@ -42,12 +43,10 @@ export default function App() {
         About
       </NavLink>
     </li>
-    </ul>
   </menu>
     </nav>
-    </header>
-
-    components
+  
+      </article>
   <Routes>
     <Route path='/' element={<Login />} exact />
     <Route path='/play' element={<Play />} />

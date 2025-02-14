@@ -52,3 +52,12 @@
 >>>>>>> 91520de (trying again)
 =======
 >>>>>>> 73e1651 (CSS update)
+
+- [x] **Bundled and transpiled** - done!
+- [x] **Components** - Login, quote generator, favorite quotes of friends.
+  - [x] **login** - When you press enter or the login button it takes you to the quote generator page
+  - [x] **database** - Displayed the favorites of other users. Currently using local storage.
+  - [x] **WebSocket** - real time communication between users and quotes. There will be a function of printing the favorites of other users
+  - [x] **application logic** - The highlight and list users change based up the user's selections of favorite quotes.
+- [x] **Router** - Routing between login and quote components.
+- [x] **Hooks** - used onClick button for the quote but not fully functional yet

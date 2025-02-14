@@ -1,60 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- 
-20% HTML pages for each component of your application [x]
-10% Proper use of HTML tags including BODY, NAV, MAIN, HEADER, FOOTER [x]
-10% Links between pages as necessary [x]
-10% Application images
-
-
--->
-
-<!-- 10% Proper use of HTML tags including BODY[x], NAV[x], MAIN[x], HEADER[x], FOOTER[x]-->
   <head>
     <meta charset="UTF-8" />
-    <!-- Tell browsers not to scale the viewport automatically -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Joan's Cool Startup for QUOTES</title>
     <link rel="icon" href="favicon.ico" />
     <link rel="stylesheet" href="styles.css" />
   </head>
+
   <body>
-    <!-- Use header, main, and footer elements to give semantic structure -->
+    <!-- Header Section -->
     <header>
-      <h1 id = "main-title">Swamp of Quotes</h1>
+      <h1 id="main-title">Swamp of Quotes</h1>
       <article>
         <h1>Home</h1>
         <p>This is a home page!</p>
         <p>PLACE HOLDER FOR 3RD PARTY SERVICE CALLS trying to generate quotes here too</p>
       </article>
-      <!-- Navigation eleents -->
+
+      <!-- Navigation Menu -->
       <nav>
-        <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
         <menu>
           <ul>
-          <!--10% Links between pages as necessary-->
-          <li><a href="index.html">Favorites!</a></li>
-          <li><a href="play.html">Searching for Quotes</a></li>
-          <li><a href="friend.html">Friends!</a></li>
-          <li><a href="about.html">Abouts</a></li>
-        </ul>
+            <li><a href="index.html">Favorites!</a></li>
+            <li><a href="play.html">Searching for Quotes</a></li>
+            <li><a href="friend.html">Friends!</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
         </menu>
       </nav>
 
-      <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
       <hr />
     </header>
 
+    <!-- Main Content Section -->
     <main>
-      <!--10% Login placeholder, including user name display-->
-      <h2 id = "loginHeader"> <3 h2>
-      <img src = "shrek.png" class= "shrekster" >
+      <h2 id="loginHeader">&lt;3</h2>
+      <img src="shrek.png" class="shrekster" alt="Shrek Image">
+
+      <!-- Login Form -->
       <form method="get" action="play.html">
         <div class="login-email-container">
           <span>@</span>
           <input type="text" placeholder="your@email.com" />
           <button type="submit">getInTheSwamp</button>
         </div>
+
         <div class="password-container">
           <span>🔒</span>
           <input type="password" placeholder="password" />
@@ -63,6 +54,7 @@
       </form>
     </main>
 
+    <!-- Footer Section -->
     <footer>
       <hr />
       <span class="text-reset">Joanie's heart and soul</span>
