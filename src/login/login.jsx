@@ -9,7 +9,6 @@ import { Authenticated } from './authenticated';
 import { AuthState } from './authState';
 
 
-
 export function Login({ userName, authState, onAuthChange }) {
   return (
     //bootstrap to get the green lol
