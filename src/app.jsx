@@ -9,6 +9,7 @@ import { Friends } from './friends/friends';
 import { About } from './about/about';
 
 export default function App() {
+  const [user, setUser] = React.useState(localStorage.getItem('user') || null );
   return (
   <BrowserRouter>
   <div className="app bg-light-green text-light">
@@ -16,7 +17,7 @@ export default function App() {
   <div className="navbar-brand">
       Shrek<sup>&reg;</sup>
     </div>
-        <p>PLACE HOLDER FOR 3RD PARTY SERVICE CALLS trying to generate quotes here too</p>
+        <p>welcome {user} to your swamp</p>
 
     </header>
     <article className="container-fluid">
@@ -29,9 +30,9 @@ export default function App() {
       </NavLink>
     </li>
     <li className="nav-item">
-      <NavLink className="nav-link" to="play">
+      {user && <NavLink className="nav-link" to="play">
         Play
-      </NavLink>
+      </NavLink> }
     </li>
     <li className="nav-item">
       <NavLink className="nav-link" to="friends">
@@ -48,8 +49,8 @@ export default function App() {
   
       </article>
   <Routes>
-    <Route path='/' element={<Login />} exact />
-    <Route path='/play' element={<Play />} />
+    <Route path='/' element={<Login setUser = {setUser}/>} exact />
+    <Route path='/play' element={<Play user = {user} />} />
     <Route path='/friends' element={<Friends />} />
     <Route path='/about' element={<About />} />
     <Route path='*' element={<NotFound />} />
@@ -57,7 +58,7 @@ export default function App() {
 
   <footer>
     <hr />
-    <span class="text-reset">Joanie's heart and soul</span>
+    <span className="text-reset">Joanie's heart and soul</span>
     <br />
     <a href="https://github.com/joansia9/startup.git">GitHub</a>
   </footer>

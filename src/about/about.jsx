@@ -4,10 +4,10 @@ import './about.css';
 export function About() {
   return (
     <main>
-      <div id="Shrek" class="picture-box"><img width="100px" src="shrekOnTheGround.png" alt='random' /></div>
+      <div id="Shrek" className="picture-box"><img width="100px" src="shrekOnTheGround.png" alt='random' /></div>
 
        <h1 id="appTitle">Application content!</h1>
-       <aside><img src = "shrek dumb sign.png" class= "shreksterSign" ></img></aside> 
+       <aside><img src = "shrek dumb sign.png" className= "shreksterSign" ></img></aside> 
       
       <p> <section>
         Hey guys! You like pinterest?

@@ -52,8 +52,7 @@
 >>>>>>> 91520de (trying again)
 =======
 >>>>>>> 73e1651 (CSS update)
->>>>>>>
-## REACT pt1
+
 - [x] **Bundled and transpiled** - done!
 - [x] **Components** - Login, quote generator, favorite quotes of friends.
   - [x] **login** - When you press enter or the login button it takes you to the quote generator page
