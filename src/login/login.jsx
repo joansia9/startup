@@ -39,13 +39,16 @@ export function Login({ setUser }) {
           <span>@</span>
           
           <input type="text" onChange={textChange} />
-          {/* ISSUE FIXED: added type="button" to prevent form submission */}
-          <button type="button" onClick={loginUser}>getInTheSwamp</button>
+         
         </div>
         <div className="password-container">
           <span>🔒</span>
           <input type="password" placeholder="password" />
+
+           {/* ISSUE FIXED: added type="button" to prevent form submission */}
+          <button type="button" onClick={loginUser}>getInTheSwamp</button>
           <button type="submit">CreateTheSwamp</button>
+          
         </div>
         
       </form>
