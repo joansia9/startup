@@ -15,6 +15,10 @@ main {
   background-color: #8ebb91;
 }
 
+container-fluid bg-secondary text-center{
+  background-color: #8ebb91;
+}
+
 menu {
   flex: 10;
   display: flex;
@@ -123,6 +127,7 @@ button:hover {
 
   main {
     flex: 1 calc(100vh - 80px); /* Adjust height for smaller screens */
+    color:#8ebb91;
   }
 
   menu {
