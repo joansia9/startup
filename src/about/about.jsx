@@ -18,7 +18,7 @@ export function About(props) {
       <div id="Shrek" className="picture-box"><img width="100px" src="shrekOnTheGround.png" alt='random' /></div>
 
        <h1 id="appTitle">Application content!</h1>
-       <aside><img src = "shrek dumb sign.png" class= "shreksterSign" ></img></aside> 
+       <aside><img src = {imageUrl} className= "shreksterSign" ></img></aside> 
       
       <p>
         Hey guys! You like pinterest?
