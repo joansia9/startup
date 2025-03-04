@@ -52,7 +52,8 @@
 >>>>>>> 91520de (trying again)
 =======
 >>>>>>> 73e1651 (CSS update)
-
+>>>>>>>
+## REACT pt1
 - [x] **Bundled and transpiled** - done!
 - [x] **Components** - Login, quote generator, favorite quotes of friends.
   - [x] **login** - When you press enter or the login button it takes you to the quote generator page
@@ -61,11 +62,3 @@
   - [x] **application logic** - The highlight and list users change based up the user's selections of favorite quotes.
 - [x] **Router** - Routing between login and quote components.
 - [x] **Hooks** - used onClick button for the quote but not fully functional yet
-
-## React Phase 2: Reactivity deliverable
-
-For this deliverable I used JavaScript and React so that the application completely works for a single user. I also added placeholders for future technology.
-
-- [x] **All functionality implemented or mocked out** - Everything is working! Quotes and log in are in local storage. 
-- [x] **Hooks** - Used `useState` and `useEffect` on the quote generator
-
