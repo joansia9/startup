@@ -1,83 +1,64 @@
-# Simon
+# startup
 
-[My Notes](notes.md)
+## Description of Each technology
+- **HTML**: Provides the basic structure and organization of the quotes app
+- **CSS**: Color and maybe pictures associated with the quotes to create a "calming" feeling for the users  
+- **React**: After logging in, users have the ability to press a button to generate random quotes and like the quote
+- **Web Service**: We plan to use **Kanye.rest** **Buddah Quotes API**  **Dictum api** to generate quotes.  
+- **Authentication**: Users must log in to access the app's features.  
+- **Database**: Stores users' favorite quotes and there will be a live likes list.  
+- **WebSocket**: Enables real-time chat functionality, allowing users to discuss their quotes with friends and see their liked quotes.
 
-In 1978 Milton-Bradley, now Hasbro, released an electronic game named Simon. It was cutting edge at the time since there were so few electronic games, and all the cool kids had one.
 
-We are going to build a peer to peer multiplayer web application modeled after Simon. We will build it together by adding new functionality every time we learn a new technology. The example version of code and production deployment for each iteration are available to you. Your job will be to review the example and then deploy it to your production environment. The goal is to make you think about every line of code. Ask, "why is it done this way?" and "Is there a better way?". You can then take what you have learned, or even portions of the Simon code, and apply it to your Startup application.
+## Elevator Pitch
+** Shrek once wisely said, "Onions have layers. Ogres have layers. You get it? We both have layers." Just like Shrek, we all have layers waiting to be uncovered. Dive into your layers with inspiring quotes and messages. Explore who you truly are and connect with others who resonate with your journey! With just a tap of a button, discover a world of layers. **
 
-## 🚀 Specification Deliverable
+## Key features
+### 💬 **Generate Feature**  
+- Users can press a button to generate a unique quote
 
-Simon is a simple game where you repeat a sequence of color flashes. The longer sequence you repeat the higher your score is.
+### ⭐ **Favorite Feature**  
+  - Users can **star** (like) quotes and create a personalized **Favorites list**.  
+- This list is **individualized** and allows users to view their **friends' favorite albums**.
 
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+### 👍 **Likes Feature**  
+- Users can **chat** with friends about their favorite albums and songs.  
+- The chat feature is **real-time**, powered by **WebSocket**.
 
-- [x] Proper use of Markdown
-- [x] A concise and compelling elevator pitch
-- [x] Description of key features
-- [x] Description of how you will use each technology
-- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+## Rough sketches 
+![Untitled (Draft)-1]()[startupSpec.pdf](https://github.com/user-attachments/files/18581441/startupSpec.pdf)
 
-### Elevator pitch
+## HTML 
+ HTML pages - 4 pages
+ - Links - there will be a login, favorite, about, and play page
+ - Text - the quotes and favorite quotes will be in text format
+ - Images - I added images of shrek
+ - DB/Login - In the login page there will be a authentication and in the favorites class, there will hold a database of favorites
+ - WebSocket - There will be a live likes and an API generating the quotes
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 73e1651 (CSS update)
 
-A mind is a beautiful thing, but it needs stimulation. Lights, color, sound, and action. Simon give you hours of fun as you complete to remember the longest sequence of colors. See if you can top the charts with you efforts. Receive automatic notification of how your friends are doing.
-
-### Design
-
-![Design](designDiagram.png)
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-```mermaid
-sequenceDiagram
-    actor User
-    User->>Login: Enter login information
-    Login->>About: See about information
-    About-->>Login: Login
-    About->>About: Read inspirational quote
-    Login->>Play: Start game
-    Play->>Play: repeat sequences
-    Play->>Play: View other player's game notifications
-    Play-->>Login: Logout
-    Login-->>Scores: view high scores
-```
-
-### Key features
-
-- Login, logout, and register
-- See high scores
-- Receive notifications for other player's achievements
-- Play by repeating color sequences
-- See a description of the app
-- Read inspirational quotes
-
-### Technologies
-
-I am going to use the required technologies in the following ways.
-
-- **HTML** - Four different views, login/register controls, play, scoreboard, and about.
-- **CSS** - Complementary color scheme, responsive design, button highlighting during play.
-- **React** - Single page application with routing between views, reactive user controls, and state hooks.
-- **Service** - Endpoints for authentication, storing/retrieving scores. Third party call to get inspirational quotes.
-- **DB/Login** - Stores authentication and scores.
-- **WebSocket** - Broadcast user's game notifications.
-
-## 🚀 AWS deliverable
-
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
-
-- [x] **Server deployed and accessible with custom domain name** - [My server link](https://simon.cs260.click).
-
-## 🚀 HTML deliverable
-
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
-
-- [x] **HTML pages** - Four different pages. One for each view. `index.html` (Login), `play.html`, `scores.html`, and `about.html`.
-- [x] **Proper HTML element usage** - I spent a lot of time learning about elements. I used header, footer, main, nav, img, a, fieldset, input, button, form, and many more.
-- [x] **Links** - Links between views.
-- [x] **Text** - About page has text.
-- [x] **3rd party API placeholder** - About page has a place to display an inspirational quote.
-- [x] **Images** - Image is displayed on the about page.
-- [x] **Login placeholder** - Placeholder for auth on the login page.
-- [x] **DB data placeholder** - High scores displayed on scores page.
-- [x] **WebSocket placeholder** - The play page has a text area that will show what other user notifications.
+## CSS
+- Header, footer, and main content body [x]
+- Navigation elements: added color contrasts and hover effects on buttons and titles
+- Responsive to window resizing: responsive to displays
+- Application elements: Used good contrast and whitespace/padding/margins, and buttons
+- Application text content: Consistent fonts and a font hierarchy
+- Application images: responsive images 
+<<<<<<< HEAD
+=======
+>>>>>>> 91520de (trying again)
+=======
+>>>>>>> 73e1651 (CSS update)
+>>>>>>>
+## REACT pt1
+- [x] **Bundled and transpiled** - done!
+- [x] **Components** - Login, quote generator, favorite quotes of friends.
+  - [x] **login** - When you press enter or the login button it takes you to the quote generator page
+  - [x] **database** - Displayed the favorites of other users. Currently using local storage.
+  - [x] **WebSocket** - real time communication between users and quotes. There will be a function of printing the favorites of other users
+  - [x] **application logic** - The highlight and list users change based up the user's selections of favorite quotes.
+- [x] **Router** - Routing between login and quote components.
+- [x] **Hooks** - used onClick button for the quote but not fully functional yet

@@ -1,108 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- 
-20% HTML pages for each component of your application [x]
-10% Proper use of HTML tags including BODY, NAV, MAIN, HEADER, FOOTER [x]
-10% Links between pages as necessary [x]
-10% Application images
-
-
--->
-
-<!-- 10% Proper use of HTML tags including BODY[x], NAV[x], MAIN[x], HEADER[x], FOOTER[x]-->
   <head>
-    <meta charset="UTF-8" />
-    <!-- Tell browsers not to scale the viewport automatically -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Joan's Cool Startup for QUOTES</title>
-    <link rel="icon" href="favicon.ico" />
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+
+    <title>Simon React</title>
   </head>
   <body>
-    <!-- Use header, main, and footer elements to give semantic structure -->
-    <header>
-      <h1>hey friend! welcome to my QUOTE swamp</h1>
-      <img src = "shrek.png"
-      alt = "quotations"
-      width = 100
-      >
-      <article>
-        <h1>Home</h1>
-        <p>This is a home page!</p>
-        <p>PLACE HOLDER FOR 3RD PARTY SERVICE CALLS trying to generate quotes here too</p>
-      </article>
-      <!-- Navigation eleents -->
-      <nav>
-        <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
-        <menu>
-          <ul>
-          <!--10% Links between pages as necessary-->
-          <li><a href="index.html">Favorites!</a></li>
-          <li><a href="play.html">Searching for Quotes</a></li>
-          <li><a href="scores.html">Friends!</a></li>
-          <li><a href="about.html">Abouts</a></li>
-        </ul>
-        </menu>
-      </nav>
-
-      <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
-      <hr />
-    </header>
-
-    <main>
-      <!--10% Login placeholder, including user name display-->
-      <h1>Log in PLACEHOLDERRR</h1>
-      <h2>Log in for some quotes broski</h2>
-      <form method="get" action="play.html">
-        <div>
-          <span>@</span>
-          <input type="text" placeholder="your@email.com" />
-        </div>
-        <div>
-          <span>🔒</span>
-          <input type="password" placeholder="password" />
-        </div>
-        <button type="submit">getInTheSwamp</button>
-        <button type="submit">CreateTheSwamp</button>
-      </form>
-    </main>
-
-    <footer>
-      <hr />
-      <span class="text-reset">Joanie's heart and soul</span>
-      <br />
-      <a href="https://github.com/joansia9/startup.git">GitHub</a>
-    </footer>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/index.jsx"></script>
   </body>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    header {
-      background-color: rgb(167, 227, 187);
-      text-align: center;
-      padding: 2px;
-      font-size: 25px;
-      color: white;
-    }
-    nav {
-      ul
-      {
-    list-style-type: none;
-      }
-    }
-    article {
-      float: left;
-      padding: 20px;
-      width: 70%;
-      background-color: #88bb8a;
-      height: 300px; 
-    }
-    footer {
-      background-color: rgb(140, 176, 147);
-      padding: 10px;
-      text-align: center;
-      color: white;
-    }
-   
-  </style>
 </html>
