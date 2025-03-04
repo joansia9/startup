@@ -15,6 +15,7 @@ export function Login({ userName, authState, onAuthChange }) {
     //bootstrap to get the green lol
     <main className='container-fluid bg-success text-center'> 
   <div>
+  
     {authState !== AuthState.Unknown && <h1>Welcome {userName} to your epic swamp of quotes!!</h1>}
     {authState === AuthState.Authenticated && (
       <Authenticated

@@ -13,11 +13,37 @@ export function About(props) {
     setQuoteAuthor('- Shrek the ogre');
   }, []);
 
+  //practicing react:
+  
+  //type writer effect! 
+  const quoteToDisplay = `"Onions have layers, ogres have layers. You get it? We both have layers." - Shrek`;
+
+  React.useEffect(() => {
+    let quoteIndex = 0;
+    let authorIndex = 0;
+    //adding the setInterval method to make the quote appear one letter at a time!! 
+    const quoteInterval = setInterval(() => {
+      if (quoteIndex < quoteToDisplay.length) { 
+        setQuote(quoteToDisplay.substring(0, quoteIndex + 1));
+        quoteIndex++;
+      } else {
+        if (authorIndex < quoteAuthor.length) {
+          setQuoteAuthor(quoteAuthor.substring(0, authorIndex + 1));
+          authorIndex++;
+        } else {
+          clearInterval(quoteInterval);
+        }
+      }
+    }, 100);
+    return () => clearInterval(quoteInterval);
+  } , [quoteToDisplay, quoteAuthor]);
+
+
   return (
     <main>
-      <div id="Shrek" className="picture-box"><img width="100px" src="shrekOnTheGround.png" alt='random' /></div>
+      <div id="Shrek" className="picture-box"><img width="400px" src="shrekOnTheGround.png" alt='random' /></div>
 
-       <h1 id="appTitle">Application content!</h1>
+       <h1 id="appTitle">About page</h1>
        <aside><img src = {imageUrl} className= "shreksterSign" ></img></aside> 
       
       <p>
