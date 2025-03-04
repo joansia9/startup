@@ -1,0 +1,81 @@
+maybe add something like this!
+
+//FIXME: this will add quotes manually! Maybe add another page, quotes that you've heard and want to add! 
+
+import React from 'react';
+import './friends.css';
+
+export function Friends() {
+  const [quote, setQuote] = React.useState('');
+  const [user, setUser] = React.useState('');
+  const [quotes, setQuotes] = React.useState([]);
+
+  // Load quotes from localStorage when the component mounts
+  React.useEffect(() => {
+    const savedQuotes = JSON.parse(localStorage.getItem('quotes')) || [];
+    setQuotes(savedQuotes);
+  }, []);
+
+  // Function to add a new quote
+  const addQuote = () => {
+    if (quote && user) {
+      const newQuote = { text: quote, user: user };
+      const updatedQuotes = [...quotes, newQuote]; // Append the new quote to the existing array
+      localStorage.setItem('quotes', JSON.stringify(updatedQuotes)); // Save the updated quotes in localStorage
+      setQuotes(updatedQuotes); // Update the state to re-render
+      setQuote(''); // Clear input fields
+      setUser('');
+    } else {
+      alert('Please enter a quote and user');
+    }
+  };
+
+  // Function to render the table rows
+  const quoteRows = quotes.map((quote, index) => (
+    <tr key={index}>
+      <td>{index + 1}</td> {/* Display index number */}
+      <td>{quote.text}</td> {/* Display quote text */}
+      <td>{quote.user}</td> {/* Display user name */}
+    </tr>
+  ));
+
+  return (
+    <main className='friendly stuff'>
+      <h1> Quotes recently liked </h1>
+
+      <img src="shrekFriends.png" className="shrekFriends" alt="Shrek Friends" />
+
+      <div>
+        {/* Input for the new quote */}
+        <input
+          type="text"
+          value={quote}
+          onChange={(e) => setQuote(e.target.value)}
+          placeholder="Enter your quote"
+        />
+        {/* Input for the user name */}
+        <input
+          type="text"
+          value={user}
+          onChange={(e) => setUser(e.target.value)}
+          placeholder="Enter user name"
+        />
+        <button onClick={addQuote}>Add Quote</button>
+      </div>
+
+      {/* Displaying the quotes in a table */}
+      <table className='table table-warning table-striped-columns'>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Quote</th>
+            <th>User</th>
+          </tr>
+        </thead>
+        <tbody>
+          {quoteRows.length > 0 ? quoteRows : <tr><td colSpan="3">No quotes yet!</td></tr>}
+        </tbody>
+      </table>
+    </main>
+  );
+}

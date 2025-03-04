@@ -33,7 +33,7 @@ export function Play({ user }) {
   return (
     <main>
       <div className="quotes">
-        <Quote />
+        <Quote/>
       </div>
       <h1>Hey {user}</h1>
 

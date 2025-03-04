@@ -33,11 +33,20 @@ export function Quote() {
     localStorage.setItem('quote', randomQuote);
   }
 
+  let quotesAdded = [];
+  function addQuotes(){
+    console.log('addQuote');
+    const quote = localStorage.getItem('quote');;
+    quotes.push(quote);
+    localStorage.setItem('quotes', JSON.stringify(quotes));
+  }
+
   return (
     <div className="container">
       <h1>Random Quote Generator</h1>
       <p>Instructions: Click the button to get a quote!</p>
       <button onClick={generateQuote}>Get Quote</button>
+      <button onClick={addQuotes}>Like this quote!</button> 
       <div className="box">
         <p>{quote}</p>
       </div>
