@@ -24,6 +24,48 @@ const [user, setUser] = React.useState('');
     }
   }, []);
 
+  //function to add a new quote
+  const addQuote = () => {
+    if (quote && user) {
+      const newQuote = {text: quote, user: user};
+      const updatedQuotes = {...quotes, newQuote};
+      setQuotes(updatedQuotes);
+      localStorage.setItem('quotes', JSON.stringify(updatedQuotes));
+      setQuote('');
+      setUser('');
+    } else {
+      alert('Please enter a quote and user');
+    }
+
+    //getting the quotes
+    const [quotes, setQuotes] = React.useState({});
+    React.useEffect(() => {
+      const quotesText = localStorage.getItem('quote');
+      if (quotesText) {
+        setquotes(JSON.parse(quotesText));
+      }
+    }, []);
+
+    // Demonstrates rendering an array with React
+  const quoteRows = [];
+  if (quotes.length) {
+    for (const [i, quote] of quotes.entries()) {
+      quoteRows.push(
+        <tr key={i}>
+          <td>{i}</td>
+          <td>{quote.quote}</td>
+        </tr>
+      );
+    }
+  } else {
+    quoteRows.push(
+      <tr key='0'>
+        <td colSpan='4'>Be the first to quote</td>
+      </tr>
+    );
+  }
+
+
   //from the specs! 
 //   const quoteRows = [];
 // if (quote.length) {
@@ -45,80 +87,22 @@ const [user, setUser] = React.useState('');
 //   );
 // }
 
-
+  }
   return (
     <main className='friendly stuff'>
-      
 
+      <table className='table table-warning table-striped-columns'>
 
-      <img src = "shrekFriends.png" className= "shrekFriends" ></img>
+        <img src = "shrekFriends.png" className= "shrekFriends" ></img>
 
-      <h1> Quotes recently liked </h1>
-      <h2>{quote}</h2>
-      <h3> from {user}</h3>
-      {/* <th>#</th> */}
-            {/* <th>Name</th> */}
-            {/* <th>quote</th>
-            <th>Date</th> */}
-            
+        <h1> Quotes recently liked </h1>
 
-            {/* <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>liked quote</th>
-                  <th>Date</th>
-                </tr>
-              </thead>
+        <h2>{quote}</h2>
 
-              <tbody>
-                <tr>
-                  <td>shrek</td>
-                  <td>liked quote "The only way to take sorrow out of death is to take love out of life."</td>
-                  <td>Jan 20, 2025</td>
-                </tr>
-                <tr>
-                  <td>donkey</td>
-                  <td>liked quote "My dear brothers and sisters, the joy we feel has little to do with the circumstances of our lives and everything to do with the focus of our lives."</td>
-                  <td>Feb 21, 2025</td>
-                </tr>
-                <tr>
-                  <td>puss</td>
-                  <td>liked quote "Even the best teams can fail. Celebrities can fade. There is only One in whom your faith is always safe, and that is in the Lord Jesus Christ. And you need to let your faith show!"</td>
-                  <td>March 3, 2025</td>
-                </tr>
-              </tbody>
-              </table>
-                   */}
-          </main>
+        <h3> from {user}</h3> 
+
+      </table>
+
+    </main>
   );
 }
-
-
-/* <table>
-<thead>
-  <tr>
-    <th>Name</th>
-    <th>liked quote</th>
-    <th>Date</th>
-  </tr>
-</thead>
-
-<tbody>
-  <tr>
-    <td>shrek</td>
-    <td>liked quote "The only way to take sorrow out of death is to take love out of life."</td>
-    <td>Jan 20, 2025</td>
-  </tr>
-  <tr>
-    <td>donkey</td>
-    <td>liked quote "My dear brothers and sisters, the joy we feel has little to do with the circumstances of our lives and everything to do with the focus of our lives."</td>
-    <td>Feb 21, 2025</td>
-  </tr>
-  <tr>
-    <td>puss</td>
-    <td>liked quote "Even the best teams can fail. Celebrities can fade. There is only One in whom your faith is always safe, and that is in the Lord Jesus Christ. And you need to let your faith show!"</td>
-    <td>March 3, 2025</td>
-  </tr>
-</tbody>
-</table> */
