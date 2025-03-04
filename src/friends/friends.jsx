@@ -33,12 +33,10 @@ export function Friends() {
             quotes.map((quote, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td>{quote.text}</td>
-                <td>{quote.user}</td>
+                <td>{quote}</td>
               </tr>
             ))
           ) : (
-            // If no quotes exist, show a message
             <tr>
               <td colSpan="3">No quotes available yet!</td>
             </tr>
