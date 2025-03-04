@@ -1,0 +1,166 @@
+/* Simplified CSS */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-width: 375px;
+  background-color: #8ebb91;
+}
+
+main {
+  flex: 1 calc(100vh - 110px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #8ebb91;
+}
+
+container-fluid bg-secondary text-center{
+  background-color: #8ebb91;
+}
+
+menu {
+  flex: 10;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  
+}
+
+footer {
+  flex: 0 30px;
+  background-color: rgb(110, 160, 126);
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+nav {
+  flex: 0 30px;
+  background-color: rgb(44, 84, 57);
+  text-align: center;
+  color: white;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  background: hsl(293, 30%, 27%);
+  padding: 20px;
+  width: 100%;
+  background-color: #8ebb91;
+  border-radius: 50px;
+  text-align: center;
+  justify-content: space-around;
+}
+
+ul li {
+  list-style-type: none;
+  position: relative;
+  padding-left: 20px;
+}
+
+ul li::before {
+  content: "★";
+  color: gold;
+  font-size: 18px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: hsl(153, 77%, 14%);
+  border-radius: 50px;
+}
+
+article {
+  float: left;
+  padding: 10px;
+  width: 50%;
+  background-color: #8ebb91;
+  height: 100px;
+  border-radius: 50px;
+}
+
+form {
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #8ebb91;
+  border-radius: 50px;
+}
+
+button:hover {
+  background: rgb(41, 80, 57);
+}
+
+.shrekster {
+  max-width: 10%;
+  border-radius: 50px;
+}
+
+:root {
+  font: 1.5em sans-serif;
+  background: hsl(153, 77%, 14%);
+}
+
+#loginHeader {
+  text-align: center;
+}
+.navbar-brand {
+  padding-left: 0.3em;
+  border-bottom: solid rgb(182, 182, 182) thin;
+}
+
+/* Responsive Styles for Mobile Devices */
+@media (max-width: 768px) {
+  :root {
+    font: 1.2em sans-serif; /* Smaller font size for mobile */
+  }
+
+  .app {
+    min-width: 100%; /* Full width on small screens */
+  }
+
+  main {
+    flex: 1 calc(100vh - 80px); /* Adjust height for smaller screens */
+    color:#8ebb91;
+  }
+
+  menu {
+    flex-direction: column; /* Stack menu items vertically */
+    align-items: center;
+  }
+
+  ul {
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
+
+  article {
+    width: 90%; /* Wider article on small screens */
+    height: auto; /* Auto height for flexibility */
+    padding: 10px; /* Reduce padding */
+  }
+
+  form {
+    width: 90%; /* Wider form on small screens */
+    padding: 10px; /* Reduce padding */
+  }
+
+  .shrekster {
+    max-width: 60%; /* Larger image on small screens */
+  }
+}
+
+
+@media (max-height: 600px) {
+  header, footer {
+    display: none;
+  }
+  main {
+    flex: 1 100vh;
+  }
+}
