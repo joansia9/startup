@@ -33,13 +33,20 @@ export function Quote() {
     localStorage.setItem('quote', randomQuote);
   }
 
-  let quotesAdded = [];
   function addQuotes(){
     console.log('addQuote');
     const quote = localStorage.getItem('quote');;
+    const username = localStorage.getItem('userName')
+
+    if (quote && username) {
+      const quotes = { text: quote, username: username };
+
     quotes.push(quote);
     localStorage.setItem('quotes', JSON.stringify(quotes));
+
+    console.log(`Quote: "${quote}" added by ${username}`); // DEBUGGGGG
   }
+}
 
   return (
     <div className="container">

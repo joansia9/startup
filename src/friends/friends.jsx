@@ -34,6 +34,7 @@ export function Friends() {
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{quote}</td>
+                <td>{localStorage.getItem('userName')}</td>
               </tr>
             ))
           ) : (
