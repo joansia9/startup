@@ -62,3 +62,14 @@
   - [x] **application logic** - The highlight and list users change based up the user's selections of favorite quotes.
 - [x] **Router** - Routing between login and quote components.
 - [x] **Hooks** - used onClick button for the quote but not fully functional yet
+
+## React Phase 2: Reactivity deliverable
+
+For this deliverable I used JavaScript and React so that the application completely works for a single user. I also added placeholders for future technology.
+
+- [x] **All functionality implemented or mocked out** - Everything is working! Votes stored in local storage. `setInterval` used to simulate grab favorites quotes and previously liked quotes.
+- [x] **Hooks** - Used `useState` and `useEffect` on the quotes view
+- [x] setInterval to print out the quotes people have liked in live time
+- [x] useState used for log in !
+- [x] useEffect practiced on the about component to make a typewriter effect but also in the play component to generate the random quotes!
+- [x] login finished!!     
