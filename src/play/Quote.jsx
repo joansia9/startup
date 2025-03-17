@@ -33,20 +33,45 @@ export function Quote() {
     localStorage.setItem('quote', randomQuote);
   }
 
-  function addQuotes(){
+  function addQuotes() {
     console.log('addQuote');
-    const quote = localStorage.getItem('quote');;
-    const username = localStorage.getItem('userName')
-
+    const quote = localStorage.getItem('quote');
+    const username = localStorage.getItem('userName');
+  
+    let storedQuotes = localStorage.getItem('quotes');
+  
+    if (storedQuotes === null) {
+      // If no quotes exist, initialize as an empty array
+      storedQuotes = [];
+    } else {
+      // Parse storedQuotes, if it's not an array, reset it
+      try {
+        storedQuotes = JSON.parse(storedQuotes);
+        //hard coding now because it was not an array and idk
+        if (!Array.isArray(storedQuotes)) {
+          console.error('stored quotes not array omg what is happenign rn');
+          storedQuotes = []; //made an array
+          //SOLUTION: cleared local storage but
+          console.error('making an array error')
+        }
+      } catch (error) {
+        console.error('Error parsing storedQuotes:', error);
+        storedQuotes = [];
+      }
+    }
+  
+    // Add quote to the array if quote and username exist
     if (quote && username) {
-      const quotes = { text: quote, username: username };
-
-    quotes.push(quote);
-    localStorage.setItem('quotes', JSON.stringify(quotes));
-
-    console.log(`Quote: "${quote}" added by ${username}`); // DEBUGGGGG
+      //fix: storing quote and associated username to fix friends lol
+      storedQuotes.push({ quote: quote, username: username });
+      localStorage.setItem('quotes', JSON.stringify(storedQuotes));
+  
+      console.log(`Quote: "${quote}" added by ${username}`); // DEBUGGGGG
+    } else {
+      console.log("Quote or username not found in localStorage. pls check or clear it");
+    }
   }
-}
+  
 
   return (
     <div className="container">
