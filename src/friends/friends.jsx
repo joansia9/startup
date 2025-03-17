@@ -2,17 +2,16 @@ import React from 'react';
 import './friends.css';
 
 export function Friends() {
-  const [quotes, setQuotes] = React.useState([]); // Use an array to hold quotes
+  const [quotes, setQuotes] = React.useState([]); // array to hold quotes
 
   // Load quotes from localStorage when the component mounts
   React.useEffect(() => {
-    // Fetch the quotes array from localStorage
     const storedQuotes = localStorage.getItem('quotes');
   
     if (storedQuotes) {
-      setQuotes(JSON.parse(storedQuotes)); // Parse and store the quotes in state
+      setQuotes(JSON.parse(storedQuotes)); // Parse 
     }
-  }, []); // Empty dependency array ensures this runs only once on mount
+  }, []);
 
   return (
     <main className="friendly stuff">
@@ -32,9 +31,10 @@ export function Friends() {
             // Display each quote in a table row
             quotes.map((quote, index) => (
               <tr key={index}>
+              
                 <td>{index + 1}</td>
-                <td>{quote}</td>
-                <td>{localStorage.getItem('userName')}</td>
+                <td>{quote.quote}</td>
+                <td>{quote.username}</td>
               </tr>
             ))
           ) : (
@@ -47,3 +47,7 @@ export function Friends() {
     </main>
   );
 }
+
+//BRO TOOK FOREVERRRR BUTTTTT fixed the quotes component first (cleared the local storage and hard coded to see the array then
+//if it wasnt an array, create it bruh)
+//THENN I had to remember you can access the quote and the username from the friends component... sorry dumb things bro
