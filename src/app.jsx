@@ -14,6 +14,11 @@ export default function App() {
   const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
   const [authState, setAuthState] = React.useState(currentAuthState);
 
+  //testing the api
+  fetch('/api/test')
+    .then(response => response.json())
+    .then(data => console.log(data)); 
+
   return (
     <BrowserRouter>
       <div className="app bg-light-green text-light">
