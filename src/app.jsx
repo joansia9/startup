@@ -8,6 +8,7 @@ import { Play } from "./play/play";
 import { Friends } from "./friends/friends";
 import { About } from "./about/about";
 import { AuthState } from './login/authState';
+import TestAuth from './play/TestAuth';
 
 export default function App() {
   const [userName, setUserName] = React.useState(localStorage.getItem("user") || null);
@@ -82,6 +83,7 @@ export default function App() {
           <a href="https://github.com/joansia9/startup.git">GitHub</a>
         </footer>
       </div>
+      <TestAuth />
     </BrowserRouter>
   );
 }
