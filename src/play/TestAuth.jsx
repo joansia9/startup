@@ -4,6 +4,7 @@ export default function TestAuth() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleCreateUser = async () => {
         try {
@@ -31,7 +32,25 @@ export default function TestAuth() {
                 body: JSON.stringify({ email, password }),
             });
             const data = await response.json();
-            setMessage(`Login Response: ${JSON.stringify(data)}`);
+            if (response.ok) {
+                setIsLoggedIn(true);
+                setMessage(`Login Response: ${JSON.stringify(data)}`);
+            } else {
+                setMessage(`Login Error: ${data.error}`);
+            }
+        } catch (error) {
+            setMessage(`Error: ${error.message}`);
+        }
+    };
+
+    const handleLogout = async () => {
+        try {
+            const response = await fetch('http://localhost:4000/api/auth/logout', {
+                method: 'DELETE',
+            });
+            const data = await response.json();
+            setIsLoggedIn(false);
+            setMessage(`Logout Response: ${JSON.stringify(data)}`);
         } catch (error) {
             setMessage(`Error: ${error.message}`);
         }
@@ -62,22 +81,38 @@ export default function TestAuth() {
                     />
                 </div>
                 <div className="space-x-4">
-                    <button
-                        onClick={handleCreateUser}
-                        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                    >
-                        Create User
-                    </button>
-                    <button
-                        onClick={handleLogin}
-                        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-                    >
-                        Login
-                    </button>
+                    {!isLoggedIn ? (
+                        <>
+                            <button
+                                onClick={handleCreateUser}
+                                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                            >
+                                Create User
+                            </button>
+                            <button
+                                onClick={handleLogin}
+                                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                            >
+                                Login
+                            </button>
+                        </>
+                    ) : (
+                        <button
+                            onClick={handleLogout}
+                            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                        >
+                            Logout
+                        </button>
+                    )}
                 </div>
                 {message && (
                     <div className="mt-4 p-4 bg-gray-100 rounded">
                         <pre>{message}</pre>
+                    </div>
+                )}
+                {isLoggedIn && (
+                    <div className="mt-4 p-4 bg-green-100 rounded">
+                        You are logged in as: {email}
                     </div>
                 )}
             </div>

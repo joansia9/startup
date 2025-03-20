@@ -79,7 +79,8 @@ async function findUser(email, password) {
 
 
 apiRouter.delete('/auth/logout', async (req, res) => {
-    // Logs out a user
+    // For now, we'll just return success since we're not using sessions yet
+    res.status(200).json({ message: 'Logged out successfully' });
 });
 
 //ideas to make the app more interactive
