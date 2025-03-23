@@ -1,27 +1,38 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-
 import Button from 'react-bootstrap/Button';
-
+import { useNavigate } from 'react-router-dom';
 import './authenticated.css';
 
 export function Authenticated(props) {
   const navigate = useNavigate();
 
-  function logout() {
-    localStorage.removeItem('userName');
-    props.onLogout();
+  async function handleLogout() {
+    try {
+      const response = await fetch('http://localhost:4000/api/auth/logout', {
+        method: 'DELETE',
+        credentials: 'include'
+      });
+      
+      if (response.ok) {
+        localStorage.removeItem('userName');
+        props.onLogout();
+        navigate('/');
+      }
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   }
 
   return (
-    <div>
-      <div className='playerName'>{props.userName}</div>
-      <Button variant='primary' onClick={() => navigate('/play')}>
-        Play
-      </Button>
-      <Button variant='secondary' onClick={() => logout()}>
-        Logout
-      </Button>
+    <div className="authenticated-container">
+      <div className="button-group">
+        <Button variant='success' onClick={() => navigate('/play')}>
+          Play
+        </Button>
+        <Button variant='outline-success' onClick={handleLogout}>
+          Logout
+        </Button>
+      </div>
     </div>
   );
 }

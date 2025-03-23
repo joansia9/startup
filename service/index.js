@@ -2,9 +2,32 @@
 const express = require('express');
 const app = express();
 const axios = require('axios');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const uuid = require('uuid');
 
-// Add middleware for parsing JSON
+// Add middleware for parsing JSON, cookies, and CORS
 app.use(express.json());
+app.use(cookieParser());
+
+// Configure CORS with specific options
+const corsOptions = {
+    origin: true, // Allow all origins in development
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    exposedHeaders: ['Set-Cookie']
+};
+
+// Add CORS middleware
+app.use(cors(corsOptions));
+
+// Add debugging middleware
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    console.log('Headers:', req.headers);
+    next();
+});
 
 // Router setup
 const apiRouter = express.Router();
@@ -13,30 +36,50 @@ app.use('/api', apiRouter);
 let users = [];
 let quotes = [];
 
-//Add this code to service/index.js to allow your code to select a port to run on based on the command line parameters.
+// Define the auth cookie name
+const authCookieName = 'token';
+
+// Add this code to service/index.js to allow your code to select a port to run on based on the command line parameters.
 const port = process.argv.length > 2 ? process.argv[2] : 4000; 
 
-//making routes (test)
+// making routes (test)
 app.get('/api/test', (req, res) => {
+    console.log('Test request received');
     res.json({ message: 'wazzup World' });
 });
 
-//Add this code to service/index.js to cause Express static middleware to serve files from the public directory once your code has been deployed to your AWS server.
+// Add this code to service/index.js to cause Express static middleware to serve files from the public directory once your code has been deployed to your AWS server.
 app.use(express.static('public'));
 
-//SYNTAX FOR API ROUTES apiRouter.METHOD(PATH, MIDDLEWARE, HANDLER)
+// SYNTAX FOR API ROUTES apiRouter.METHOD(PATH, MIDDLEWARE, HANDLER)
 
 apiRouter.post('/auth/create', async (req, res) => {
-    const { email, password } = req.body;
-    //(fail) if email and password are not provided, return 400 error
-    if (!email || !password) {
-        return res.status(400).json({ error: 'Email and password are required' });
-    }
-    //(success) if email and password are provided, create user
-    const user = await createUser(email, password);
-    res.status(201).json({ email: user.email }); //(success) if user is created, return 201 status and email
-});
+    console.log('create post received');
+    try {
+        console.log('Create request body:', req.body);
+        //did they give an email or password
+        if (!req.body.email || !req.body.password) {
+            return res.status(400).json({ error: 'Email and password are required' });
+        }
+        //does the user already exist
+        if (await findUser(req.body.email)) {
+            return res.status(409).json({ error: 'User already exists' });
+        }
+        //create the user
+        const user = await createUser(req.body.email, req.body.password);
+        //creating auth token
+        //why is this important? bc Creates a unique token (like a secret key) for the user
+        user.token = uuid.v4(); //generates a random string like "550e8400-e29b-41d4-a716-446655440000"
+        //setting the auth cookie
+        setAuthCookie(res, user.token); //stores the token
+        //returning the user's email and success
+        return res.status(201).json({ email: user.email });
 
+    } catch (error) {
+        console.error('Create error:', error);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 async function createUser(email, password) {
     const user = { email, password };
@@ -45,56 +88,94 @@ async function createUser(email, password) {
 }
 
 apiRouter.post('/auth/login', async (req, res) => {
-    const { email, password } = req.body;
-    //(fail)if email and password are not provided, return 400 error
-    if (!email || !password) {
-        return res.status(400).json({ error: 'no email or password' });
+    try {
+        console.log('Login request body:', req.body);
+        if (!req.body.email || !req.body.password) {
+            return res.status(400).json({ error: 'Email and password are required' });
+        }
+
+        const user = await findUser(req.body.email);
+        if (!user || user.password !== req.body.password) {
+            return res.status(401).json({ error: 'Invalid email or password' });
+        }
+
+        user.token = uuid.v4();
+        setAuthCookie(res, user.token);
+        return res.json({ email: user.email });
+    } catch (error) {
+        console.error('Login error:', error);
+        return res.status(500).json({ error: 'Internal server error' });
     }
-    //(fail) if user is not found, return 401 error
-    const user = await findUser(email, password);
-    if (!user) {
-        return res.status(401).json({ error: 'unauthorized' });
-    }
-    //BUT (success)if user is found, return 200 status and email
-    return res.status(200).json({ email: user.email });
 });
 
-async function findUser(email, password) {
-    //(fail) if email and password are not provided, return null
-    if (!email || !password) { 
-        return null;
-    }
-    //(fail) if user is not found, return null
-    const user = users.find(u => u.email === email);
-    if (!user) {
-        return null;
-    }
-    //(fail) if password is not correct, return null
-    if (user.password !== password) {
-        return null;
-    }
-    //(success) if user is found and password is correct, return user
-    return user;
+async function findUser(email) {
+    return users.find(u => u.email === email);
 }
 
-
 apiRouter.delete('/auth/logout', async (req, res) => {
-    // For now, we'll just return success since we're not using sessions yet
-    res.status(200).json({ message: 'Logged out successfully' });
+    try {
+        res.clearCookie(authCookieName);
+        return res.json({ message: 'Logged out successfully' });
+    } catch (error) {
+        console.error('Logout error:', error);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
 });
 
-//ideas to make the app more interactive
+function setAuthCookie(res, authToken) {
+    res.cookie(authCookieName, authToken, {
+        secure: true,
+        httpOnly: true,
+        sameSite: 'strict',
+        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    });
+}
 
-//GET /api/quotes – Get all quotes
+// Quote-related endpoints
+apiRouter.get('/quotes', (req, res) => {
+    try {
+        return res.json(quotes);
+    } catch (error) {
+        console.error('Get quotes error:', error);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+apiRouter.post('/quotes', (req, res) => {
+    try {
+        if (!req.body.text || !req.body.author) {
+            return res.status(400).json({ error: 'Quote text and author are required' });
+        }
+
+        const newQuote = {
+            id: uuid.v4(),
+            text: req.body.text,
+            author: req.body.author,
+            createdAt: new Date().toISOString()
+        };
+
+        quotes.push(newQuote);
+        return res.status(201).json(newQuote);
+    } catch (error) {
+        console.error('Create quote error:', error);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// ideas to make the app more interactive
+// GET /api/quotes – Get all quotes
 // POST /api/quotes – Add a new quote
 // DELETE /api/quotes/:id – Delete a quote by ID
 // GET /api/quotes/random – Get a random quote
 // GET /api/quotes/search – Search quotes by text
 // GET /api/quotes/author/:author – Get quotes by author
 
-
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
 
 //api https://github.com/public-apis/public-apis?tab=readme-ov-file
+
+//command for curl: curl -X POST http://localhost:4000/api/auth/create -H "Content-Type: application/json" -d '{"email": "test@example.com", "password": "secret"}'
+
+//come
