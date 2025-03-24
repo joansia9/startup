@@ -1,0 +1,34 @@
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.quote-card {
+    background-color: #f8f9fa;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+.quote-text {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.error-message {
+    color: #e74c3c;
+    text-align: center;
+    padding: 10px;
+    background-color: #fde8e8;
+    border-radius: 4px;
+    margin: 1rem 0;
+} 

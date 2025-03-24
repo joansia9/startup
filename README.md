@@ -72,4 +72,13 @@ For this deliverable I used JavaScript and React so that the application complet
 - [x] setInterval to print out the quotes people have liked in live time
 - [x] useState used for log in !
 - [x] useEffect practiced on the about component to make a typewriter effect but also in the play component to generate the random quotes!
-- [x] login finished!!     
+- [x] login finished!!   
+
+## WebSocket deliverable
+
+For this deliverable I used webSocket to update the votes on the frontend in realtime.
+
+- [x] **Backend listens for WebSocket connection** - done!
+- [x] **Frontend makes WebSocket connection** - done!
+- [x] **Data sent over WebSocket connection** - done!
+- [x] **WebSocket data displayed** - quotes can display!! 

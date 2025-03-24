@@ -8,6 +8,7 @@ import { Play } from "./play/play";
 import { Friends } from "./friends/friends";
 import { About } from "./about/about";
 import { AuthState } from './login/authState';
+import QuoteDisplay from './quotes/QuoteDisplay';
 
 export default function App() {
   const [userName, setUserName] = React.useState(localStorage.getItem("user") || null);
@@ -51,6 +52,11 @@ export default function App() {
                 </li>
                )}
               <li className="nav-item">
+                <NavLink className="nav-link" to="quotes">
+                  Quotes
+                </NavLink>
+              </li>
+              <li className="nav-item">
                 <NavLink className="nav-link" to="about">
                   About
                 </NavLink>
@@ -62,10 +68,12 @@ export default function App() {
           <Route path="/" element={<Login
         userName={userName}
         authState={authState}
-        //onAuthChange function is defined 
+        //onAuthChange function is defined here (according to the video) because it's the PARENt component
         onAuthChange={(userName, authState) => {
-          setAuthState(authState);
-          setUserName(userName);
+          //this is the function that is passed from the child component (Login) to the parent component (App)
+          //purpose: when you log in, you automatically go to the play page from the video (last part)
+          setAuthState(authState); //updates if user is logged in or not
+          setUserName(userName); //updates the username
         }}
       />
     }
@@ -73,6 +81,7 @@ export default function App() {
           <Route path="/play" element={<Play user={userName} />} />
           <Route path="/friends" element={<Friends />} />
           <Route path="/about" element={<About />} />
+          <Route path="/quotes" element={<QuoteDisplay />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 
