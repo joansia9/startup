@@ -1,23 +1,24 @@
 // src/components/Quote.jsx
 import React, { useState, useEffect } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import './Quote.css';
 
 export function Quote() {
   // const quotes = [
   //   "The joy we feel has little to do with the circumstances of our lives and everything to do with the focus of our lives. — Russell M. Nelson",
   //   "When the focus of our lives is on Jesus Christ and His gospel, we can feel joy regardless of what is happening—or not happening—in our lives. — Russell M. Nelson",
-  //   "The Lord loves effort, because effort brings rewards that can’t come without it. — Russell M. Nelson",
+  //   "The Lord loves effort, because effort brings rewards that can't come without it. — Russell M. Nelson",
   //   "The Savior is the perfect example of how to live. He is the light that dispels darkness. — Russell M. Nelson",
   //   "Faith in Jesus Christ is the greatest power available to us in this life. — Russell M. Nelson",
   //   "Ogres are like onions. We have layers. — Shrek",
   //   "What are you doing in my swamp?! — Shrek",
   //   "Better out than in, I always say. — Shrek",
-  //   "It’s not exactly rocket science, is it? — Shrek",
+  //   "It's not exactly rocket science, is it? — Shrek",
   //   "You know, sometimes things are more than they appear. — Shrek",
   // ];
   const [quote, setQuote] = useState("Click the button to get a quote!");
   const [error, setError] = useState(null);
+  //just like the const [teststuff, setTeststuff] = React.useState("testStuff") from the video tutorial
 
   //  // Initialize state with the quote from localStorage (if it exists)
   //  const [quote, setQuote] = useState(localStorage.getItem('quote') || "Click the button to get a quote!");
@@ -44,7 +45,7 @@ export function Quote() {
   //   // Persistence
   //   localStorage.setItem('quote', randomQuote);
   // }
-  const fetchQuote = async () => {
+  const handleClick = async () => {
     try {
       const response = await fetch('http://localhost:4000/api/quotes', {
         method: 'POST',
@@ -114,28 +115,21 @@ export function Quote() {
         <p>{quote}</p>
       </div> */}
       {error && <div className="error-message">{error}</div>}
-      <Card className="quote-card">
-        <Card.Body>
-          <Card.Text className="quote-text">
+      <div className="quote-card">
+        <div className="quote-content">
+          <p className="quote-text">
             {quote}
-          </Card.Text>
+          </p>
           <div className="button-group">
-            <Button 
-              variant="success" 
-              onClick={fetchQuote}
-              className="me-2"
-            >
-              Get New Quote
+            <Button onClick={handleClick} className="quote-button get-quote-btn">
+              Generate new quote
             </Button>
-            <Button 
-              variant="outline-success" 
-              onClick={addQuotes}
-            >
+            <Button onClick={addQuotes} className="quote-button like-quote-btn" >
               Like this quote!
             </Button>
           </div>
-        </Card.Body>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }

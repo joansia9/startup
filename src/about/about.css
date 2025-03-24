@@ -1,19 +1,27 @@
 p {
     box-sizing: border-box;
-  }
-  header {
+    padding: 2rem;
+    margin: 2rem 0;
+    background:  #c1e9c6;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #34495e;
+}
+header {
     background-color: rgb(167, 227, 187);
     text-align: center;
     padding: 2px;
     font-size: 25px;
     color: white;
     border-radius: 50px; /* Round the corners */
-  }
-  :root {
+}
+:root {
     font: 1.5em sans-serif;
-  }
-  
-  aside {
+}
+
+aside {
     padding: 3em;
     margin: 0.5em;
     border: hsl(0, 100%, 20%) solid thick;
@@ -76,27 +84,27 @@ aside {
     border: 3px solid hsl(155, 10%, 20%);
     background: hsl(130, 36%, 64%);
     border-radius: 50px; /* Round the corners */
-    max-width: 250px; /* Ensures it doesn’t grow too large */
-  }
-  section {
+    max-width: 250px; /* Ensures it doesn't grow too large */
+}
+section {
     padding: 0.25em;
     margin-bottom: 0.5em;
     flex: 2;
-  }
-  @media (orientation: portrait) {
+}
+@media (orientation: portrait) {
     body {
-      flex-direction: column;
+        flex-direction: column;
     }
-  }
-  @media ((orientation: portrait) and (max-height: 500px)) {
+}
+@media ((orientation: portrait) and (max-height: 500px)) {
     aside {
-      display: column;
+        display: column;
     }
-  }
-  #appTitle {
+}
+#appTitle {
     text-align: center;
-  }
-  #Shrek {
+}
+#Shrek {
     width: 120px; /* Set the width for the div */
     margin: 0 auto; /* Center horizontally */
     text-align: center; /* Center the image inside */

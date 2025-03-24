@@ -8,7 +8,7 @@ import { Play } from "./play/play";
 import { Friends } from "./friends/friends";
 import { About } from "./about/about";
 import { AuthState } from './login/authState';
-import QuoteDisplay from './quotes/QuoteDisplay';
+import { Quote } from './play/Quote';
 
 export default function App() {
   const [userName, setUserName] = React.useState(localStorage.getItem("user") || null);
@@ -81,7 +81,7 @@ export default function App() {
           <Route path="/play" element={<Play user={userName} />} />
           <Route path="/friends" element={<Friends />} />
           <Route path="/about" element={<About />} />
-          <Route path="/quotes" element={<QuoteDisplay />} />
+          <Route path="/quotes" element={<Quote />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 

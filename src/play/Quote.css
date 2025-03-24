@@ -2,33 +2,183 @@
     max-width: 800px;
     margin: 2rem auto;
     padding: 0 1rem;
+    text-align: center;
+}
+
+.container h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .quote-card {
-    background-color: #f8f9fa;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
     border: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+    max-width: 800px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.quote-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.quote-content {
+    padding: 2rem;
 }
 
 .quote-text {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-style: italic;
     color: #2c3e50;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    position: relative;
+    padding: 0 1rem;
+}
+
+.quote-text::before,
+.quote-text::after {
+    content: '"';
+    font-size: 4rem;
+    color: #3498db;
+    opacity: 0.2;
+    position: absolute;
+}
+
+.quote-text::before {
+    left: -10px;
+    top: -10px;
+}
+
+.quote-text::after {
+    right: -10px;
+    bottom: -30px;
+}
+
+.quote-button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    margin: 5px;
+}
+
+.get-quote-btn {
+    background-color: #28a745;  /* Green color */
+    color: white;
+}
+
+.get-quote-btn:hover {
+    background-color: #218838;  /* Darker green on hover */
+    transform: translateY(-2px);
+}
+
+.like-quote-btn {
+    background-color: transparent;
+    border: 2px solid #28a745;
+    color: #28a745;
+}
+
+.like-quote-btn:hover {
+    background-color: #28a745;
+    color: white;
+    transform: translateY(-2px);
 }
 
 .button-group {
     display: flex;
-    gap: 1rem;
+    gap: 10px;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .error-message {
     color: #e74c3c;
     text-align: center;
-    padding: 10px;
+    padding: 1rem;
     background-color: #fde8e8;
-    border-radius: 4px;
+    border-radius: 8px;
     margin: 1rem 0;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .quote-text {
+        font-size: 1.4rem;
+    }
+
+    .button-group {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button-group button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+.liked-quotes {
+    margin-top: 2rem;
+}
+
+.liked-quotes h3 {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.liked-quotes .card {
+    background: #ffffff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.liked-quotes .card:hover {
+    transform: translateY(-2px);
+}
+
+.liked-quotes .card-body {
+    padding: 1.5rem;
+}
+
+.liked-quotes .card-text {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.liked-quotes small {
+    color: #7f8c8d;
+    font-size: 0.9rem;
 } 

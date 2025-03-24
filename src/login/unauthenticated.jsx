@@ -1,6 +1,4 @@
 import React from 'react';
-
-import Button from 'react-bootstrap/Button';
 import { MessageDialog } from './messageDialog';
 
 export function Unauthenticated(props) {
@@ -83,12 +81,22 @@ export function Unauthenticated(props) {
           <span className='input-group-text'>🔒</span>
           <input className='form-control' type='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='password' />
         </div>
-        <Button variant='primary' onClick={loginUser} disabled={!userName || !password}>
+        {/* //for some reason bootstrap was not working
+        //Solution: html */}
+        <button 
+          className="btn btn-primary me-2" 
+          onClick={loginUser} 
+          disabled={!userName || !password}
+        >
           Login
-        </Button>
-        <Button variant='secondary' onClick={createUser} disabled={!userName || !password}>
+        </button>
+        <button 
+          className="btn btn-secondary" 
+          onClick={createUser} 
+          disabled={!userName || !password}
+        >
           Create
-        </Button>
+        </button>
       </div>
 
       <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
