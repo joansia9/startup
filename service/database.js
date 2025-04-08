@@ -24,10 +24,9 @@ async function likeQuote(quoteId, userEmail) {
   }
 
 //keeping in track of the quotes
-async function addQuote(quote, author) {
+async function addQuote(quote) {
     const newQuote = {
       quote: quote,
-      author: author,
       likes: 0,
       likedBy: [] // Array to store user emails who liked this quote
     };

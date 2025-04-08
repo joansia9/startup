@@ -4,15 +4,20 @@ import './friends.css';
 export function Friends() {
   const [quotes, setQuotes] = React.useState([]); // array to hold quotes
 
+  //this if for the react part 2
   // Load quotes from localStorage when the component mounts
+  // React.useEffect(() => {
+  //   // Fetch the quotes array from localStorage
+  //   const storedQuotes = localStorage.getItem('quotes');
+
+  //   if (storedQuotes) {
+  //     setQuotes(JSON.parse(storedQuotes)); // Parse and store the quotes in state
+  //     setQuotes(JSON.parse(storedQuotes)); // Parse 
+  //   }
+  // }, []); // Empty dependency array ensures this runs only once on mount
+
+  //this is for the database assignment
   React.useEffect(() => {
-    //const storedQuotes = localStorage.getItem('quotes'); //we dont need this because we are using the mongodb
-
-    // if (storedQuotes) {
-    //   setQuotes(JSON.parse(storedQuotes)); // Parse 
-    // }
-
-    //for the database we need to change the fetch URL to http://localhost:4000/api/quotes/top
     const fetchQuotes = async () => { 
       try {
         const response = await fetch('http://localhost:4000/api/quotes/top');
@@ -21,21 +26,14 @@ export function Friends() {
         }
         const data = await response.json();
         console.log('Fetched quotes:', data); // Debug to show quote data
-        data.forEach(quote => {
-          console.log('quote', quote.quote);
-          console.log('likes', quote.likes);
-          console.log('likedby', quote.likedBy);
-          console.log('author', quote.author);
-        });
         setQuotes(data);
       } catch (err) {
         console.error('Error fetching quotes:', err);
       }
     };
-
+  
     fetchQuotes();
   }, []);
-
 
 
 
@@ -49,7 +47,6 @@ export function Friends() {
           <tr>
             <th>#</th>
             <th>Quote</th>
-            <th>Likes</th>
             <th>Liked By</th>
           </tr>
         </thead>
@@ -60,18 +57,17 @@ export function Friends() {
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{quote.quote}</td>
-                <td>{quote.likes}</td>
                 <td>
-                  {quote.likedBy?.length > 0 ? //are there likes?
-                     quote.likedBy.join(', ') //diplay them and join them with commas //if not, display no likes yet
-                    : 'No likes yet'} 
-                </td>
+            {quote.likedBy && quote.likedBy.length > 0 ? 
+            quote.likedBy.join(', ')
+              : 'No likes yet'}
+          </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="3">No quotes available yet!</td>
-            </tr>
+              <td colSpan="3">No quotes available yet!</td> 
+            </tr> //bro random error here, change it to 4
           )}
         </tbody>
       </table>

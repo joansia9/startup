@@ -1,47 +1,47 @@
 const db = require('./database.js');
 
-async function testLikedByUsers() {
+async function testTopQuotes() {
   try {
-    // Connect to database
+    // 1. Connect to database
     await db.connectToDatabase();
     console.log('Connected to database');
-    
-    // Test quotes with different users who liked them
+
+    // 2. Add some test quotes with different like counts
     const testQuotes = [
       {
-        quote: "Stay hungry, stay foolish",
-        author: "Steve Jobs",
-        likes: 3,
-        likedBy: ["Alice", "Bob", "Charlie"]
+        quote: "Test quote 1",
+        author: "Author 1",
+        likes: 10,
+        likedBy: ["user1", "user2", "user3"]
       },
       {
-        quote: "Be the change you wish to see in the world",
-        author: "Mahatma Gandhi",
-        likes: 2,
-        likedBy: ["David", "Eve"]
+        quote: "Test quote 2",
+        author: "Author 2",
+        likes: 5,
+        likedBy: ["user1"]
       },
       {
-        quote: "Just do it",
-        author: "Nike",
-        likes: 1,
-        likedBy: ["Frank"]
+        quote: "Test quote 3",
+        author: "Author 3",
+        likes: 15,
+        likedBy: ["user1", "user2", "user3", "user4"]
       }
     ];
 
-    // Clear existing quotes first
+    // 3. Clear existing quotes
+    await db.clearDatabase();
+    console.log('Cleared old quotes');
+
+    // 4. Insert test quotes
     const collection = db.client.db('likedQuotes').collection('quotes');
-    await collection.deleteMany({});
-    console.log('Cleared existing quotes');
-
-    // Insert test quotes
     await collection.insertMany(testQuotes);
-    console.log('Test quotes with likes inserted successfully');
+    console.log('Added test quotes');
 
-    // Fetch and display quotes to verify
-    const quotes = await db.getTopQuotes();
-    console.log('\nFetched quotes:');
-    quotes.forEach((quote, index) => {
-      console.log(`${index + 1}. "${quote.quote}" - ${quote.author}`);
+    // 5. Get top quotes and display them
+    const topQuotes = await db.getTopQuotes();
+    console.log('\nTop Liked Quotes:');
+    topQuotes.forEach((quote, index) => {
+      console.log(`${index + 1}. "${quote.quote}"`);
       console.log(`   Likes: ${quote.likes}`);
       console.log(`   Liked by: ${quote.likedBy.join(', ')}`);
       console.log('---');
@@ -54,4 +54,4 @@ async function testLikedByUsers() {
   }
 }
 
-testLikedByUsers();
+testTopQuotes();
