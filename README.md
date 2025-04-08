@@ -74,11 +74,22 @@ For this deliverable I used JavaScript and React so that the application complet
 - [x] useEffect practiced on the about component to make a typewriter effect but also in the play component to generate the random quotes!
 - [x] login finished!!   
 
-## WebSocket deliverable
 
-For this deliverable I used webSocket to update the votes on the frontend in realtime.
+## Service deliverable
 
-- [x] **Backend listens for WebSocket connection** - done!
-- [x] **Frontend makes WebSocket connection** - done!
-- [x] **Data sent over WebSocket connection** - done!
-- [x] **WebSocket data displayed** - quotes can display!! 
+For this deliverable I added backend endpoints that receives votes and returns the voting totals.
+
+- [x] **Node.js/Express HTTP service** - done!
+- [x] **Static middleware for frontend** - done!
+- [x] **Calls to third party endpoints** - done! (quotes forismatic)
+- [x] **Backend service endpoints** - Placeholders for login that stores the current user on the server. Endpoints for log in and quotes and saving quotes
+- [x] **Frontend calls service endpoints** - I did this using the fetch function.
+- [x] **Supports registration, login, logout, and restricted endpoint** - Login only exists on the frontend.
+
+
+## DB/Login deliverable
+
+For this deliverable I associate the votes with the logged in user. I stored the votes in the database.
+
+- [x] **Stores data in MongoDB** - done!
+- [x] **Use MongoDB to store credentials** - Stores both user and their votes.
