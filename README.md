@@ -83,8 +83,8 @@ For this deliverable I added backend endpoints that receives votes and returns t
 - [x] **Static middleware for frontend** - done!
 - [x] **Calls to third party endpoints** - done! (quotes forismatic)
 - [x] **Backend service endpoints** - Placeholders for login that stores the current user on the server. Endpoints for log in and quotes and saving quotes
-- [x] **Frontend calls service endpoints** - I did this using the fetch function.
-- [x] **Supports registration, login, logout, and restricted endpoint** - Login only exists on the frontend.
+- [x] **Frontend calls service endpoints** - I did this using the fetch functions (fetching the quotes, users that liked the quotes)
+- [x] **Supports registration, login, logout, and restricted endpoint** - Login only exists on the frontend. 
 
 
 ## DB/Login deliverable
@@ -92,4 +92,4 @@ For this deliverable I added backend endpoints that receives votes and returns t
 For this deliverable I associate the votes with the logged in user. I stored the votes in the database.
 
 - [x] **Stores data in MongoDB** - done!
-- [x] **Use MongoDB to store credentials** - Stores both user and their votes.
+- [x] **Use MongoDB to store credentials** - Stores both user and their quotes -> took alot of time because I tried to take into account duplicates and lists of users that liked quotes and most liked quotes
