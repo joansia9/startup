@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
@@ -17,10 +17,10 @@ async function likeQuote(quoteId, username) {
       console.log('Attempting to like quote:', quoteId, 'by user:', username); // Debug log
 
       const result = await collection.updateOne(
-        { id: quoteId }, // Use our custom ID instead of ObjectId
+        { _id: new ObjectId(quoteId) }, // Using imported ObjectId
         { 
           $inc: { likes: 1 },
-          $addToSet: { likedBy: username }
+          $addToSet: { likedBy: username } //so the username appears only once
         }
       );
       
@@ -41,10 +41,9 @@ async function addQuoteWithUser(quote, username) {
       }
 
       const newQuote = {
-        id: Date.now().toString(), // Use timestamp as ID
         quote: quote,
-        likes: 1,
-        likedBy: [username]
+        likes: 1, // Start with 1 like since the user who added it likes it
+        likedBy: [username] // Initialize likedBy array with the username
       };
 
       const result = await collection.insertOne(newQuote);
