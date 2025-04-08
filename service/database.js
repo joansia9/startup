@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
@@ -7,31 +7,53 @@ const db = client.db('likedQuotes');
 const collection = db.collection('quotes');
 
 //keeping in track of the users that liked the quotes
-async function likeQuote(quoteId, userEmail) {
+async function likeQuote(quoteId, username) {
     try {
-      await collection.updateOne(
-        { _id: new ObjectId(quoteId) },
+      if (!username) {
+        console.error('No username provided');
+        return false;
+      }
+
+      console.log('Attempting to like quote:', quoteId, 'by user:', username); // Debug log
+
+      const result = await collection.updateOne(
+        { _id: new ObjectId(quoteId) }, // Using imported ObjectId
         { 
           $inc: { likes: 1 },
-          $addToSet: { likedBy: userEmail } // Add user's email to likedBy array
+          $addToSet: { likedBy: username }
         }
       );
-      return true;
+      
+      console.log('Update result:', result); // Debug log
+      return result.modifiedCount > 0;
     } catch (error) {
       console.error('Error liking quote:', error);
       return false;
     }
-  }
+}
 
 //keeping in track of the quotes
-async function addQuote(quote) {
-    const newQuote = {
-      quote: quote,
-      likes: 0,
-      likedBy: [] // Array to store user emails who liked this quote
-    };
-    return await collection.insertOne(newQuote);
-  }
+async function addQuoteWithUser(quote, username) {
+    try {
+      if (!quote || !username) {
+        console.error('Quote and username are required');
+        return null;
+      }
+
+      const newQuote = {
+        quote: quote,
+        likes: 1, // Start with 1 like since the user who added it likes it
+        likedBy: [username] // Initialize likedBy array with the username
+      };
+
+      const result = await collection.insertOne(newQuote);
+      console.log(`Added quote: "${quote}" liked by ${username}`);
+      return result;
+    } catch (error) {
+      console.error('Error adding quote:', error);
+      return null;
+    }
+}
 
 // Get top liked quotes
 async function getTopQuotes() {
@@ -75,8 +97,9 @@ async function clearDatabase() {
 module.exports = {
   connectToDatabase,
   getTopQuotes,
-  addQuote,
+  addQuoteWithUser,
   clearDatabase,
   likeQuote,
+  updateQuoteLikesFromStorage,
   client
 };

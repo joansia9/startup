@@ -21,11 +21,13 @@ app.use(cookieParser()); //middleware, parses cookies in requests
 // Add CORS middleware
 app.use(cors(corsOptions));
 
-
-// Add debugging middleware
+// Debug middleware - add this first
 app.use((req, res, next) => {
-    console.log(`${req.method} ${req.url}`);
-    console.log('Headers:', req.headers);
+    console.log('Incoming request:', {
+        method: req.method,
+        path: req.path,
+        body: req.body
+    });
     next();
 });
 
@@ -158,7 +160,45 @@ function setAuthCookie(res, authToken) {
 // GET /api/quotes/search – Search quotes by text
 // GET /api/quotes/author/:author – Get quotes by author
 
-// Quote endpoint using Forismatic API
+// Test endpoint to verify server is working
+apiRouter.get('/test', (req, res) => {
+    res.json({ message: 'Server is working' });
+});
+
+// Quote save endpoint
+apiRouter.post('/quotes/save', async (req, res) => {
+    console.log('Quote save endpoint hit:', req.body);
+    try {
+        const { quote, username } = req.body;
+        
+        if (!quote || !username) {
+            console.log('Missing quote or username');
+            return res.status(400).json({ error: 'Quote and username are required' });
+        }
+
+        const collection = db.client.db('likedQuotes').collection('quotes');
+        const newQuote = {
+            quote: quote,
+            likes: 1,
+            likedBy: [username]
+        };
+
+        await db.connectToDatabase(); // Make sure we're connected
+        const result = await collection.insertOne(newQuote);
+        console.log('Quote saved successfully:', result);
+        
+        res.status(201).json({ 
+            success: true, 
+            message: 'Quote saved successfully',
+            quoteId: result.insertedId 
+        });
+    } catch (error) {
+        console.error('Server error saving quote:', error);
+        res.status(500).json({ error: 'Failed to save quote' });
+    }
+});
+
+// Your existing quotes endpoint for fetching quotes from Forismatic API
 apiRouter.post("/quotes", async (req, res) => {
     console.log('quotes received');
     //forismatic api
@@ -197,16 +237,16 @@ apiRouter.post("/quotes", async (req, res) => {
 });
 
 //API endpoints for the top quotes function in database.js
-apiRouter.get('/quotes/top', async (req, res) => {
-    try {
-        const topQuotes = await db.getTopQuotes();
-        console.log('Sending quotes:', topQuotes); //debugggggg
-        res.json(topQuotes);
-    } catch (error) {
-        console.error('Error:', error); //debugggggggggg 
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
+// apiRouter.get('/quotes/top', async (req, res) => {
+//     try {
+//         const topQuotes = await db.getTopQuotes();
+//         console.log('Sending quotes:', topQuotes); //debugggggg
+//         res.json(topQuotes);
+//     } catch (error) {
+//         console.error('Error:', error); //debugggggggggg 
+//         res.status(500).json({ error: 'Internal server error' });
+//     }
+// });
 
 apiRouter.delete('/quotes/clear', async (req, res) => {
     try {
@@ -221,18 +261,26 @@ apiRouter.delete('/quotes/clear', async (req, res) => {
   });
 
   //who liked the quote?
-  apiRouter.post('/quotes/:id/like', async (req, res) => {
+apiRouter.post('/quotes/:id/like', async (req, res) => {
     try {
-      // Get the user from your existing auth system
-      const authToken = req.cookies.token;
-      const user = users.find(u => u.token === authToken);
+      let username;
       
-      if (!user) {
-        return res.status(401).json({ error: 'Must be logged in to like quotes' });
+      // First try to get username from request body (localStorage)
+      if (req.body.username) {
+        username = req.body.username;
+      } else {
+        // Fallback to auth token method
+        const authToken = req.cookies.token;
+        const user = users.find(u => u.token === authToken);
+        
+        if (!user) {
+          return res.status(401).json({ error: 'Must be logged in to like quotes' });
+        }
+        username = user.email;
       }
   
-      // Like the quote with the user's email
-      await db.likeQuote(req.params.id, user.email);
+      // Like the quote with the username
+      await db.likeQuote(req.params.id, username);
       res.json({ success: true });
     } catch (error) {
       console.error('Error:', error);
@@ -241,7 +289,10 @@ apiRouter.delete('/quotes/clear', async (req, res) => {
   });
 
 app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
+    console.log(`Server running on port ${port}`);
+    console.log('Available endpoints:');
+    console.log('- POST /api/quotes/save');
+    console.log('- POST /api/quotes');
 });
 
 //api https://github.com/public-apis/public-apis?tab=readme-ov-file

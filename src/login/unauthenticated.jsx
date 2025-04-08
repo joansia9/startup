@@ -33,7 +33,7 @@ export function Unauthenticated(props) {
       
       //if the response is ok, then we set the userName in the local storage and call the onLogin function
       if (response.ok) {
-        localStorage.setItem('userName', userName); //setting the userName in the local storage
+        localStorage.setItem('userName', userName); //setting the userName in the local storage for persistance purposes!
         props.onLogin(userName); //this is the function that is passed from the parent component
       } else {
         setDisplayError(`⚠ Error: ${data.error}`);

@@ -67,41 +67,65 @@ export function Quote() {
     }
   };
 
-  function addQuotes() {
-    console.log('addQuote');
+  async function addQuotes() {
+    console.log('Starting addQuotes function');
     const quote = localStorage.getItem('quote');
     const username = localStorage.getItem('userName');
   
-    let storedQuotes = localStorage.getItem('quotes');
-  
-    if (storedQuotes === null) {
-      // If no quotes exist, initialize as an empty array
-      storedQuotes = [];
-    } else {
-      // Parse storedQuotes, if it's not an array, reset it
-      try {
-        storedQuotes = JSON.parse(storedQuotes);
-        //hard coding now because it was not an array and idk
-        if (!Array.isArray(storedQuotes)) {
-          console.error('stored quotes not array omg what is happenign rn');
-          storedQuotes = []; //made an array
-          //SOLUTION: cleared local storage but
-          console.error('making an array error')
-        }
-      } catch (error) {
-        console.error('Error parsing storedQuotes:', error);
-        storedQuotes = [];
-      }
+    if (!quote || !username) {
+        console.log("Quote or username not found in localStorage:", { quote, username });
+        setError('Please generate a quote and make sure you are logged in');
+        return;
     }
   
-    // Add quote to the array if quote and username exist
-    if (quote && username) {
-      //fix: storing quote and associated username to fix friends lol
-      storedQuotes.push({ quote: quote, username: username });
-      localStorage.setItem('quotes', JSON.stringify(storedQuotes));
-      console.log(`Quote: "${quote}" added by ${username}`);
-    } else {
-      console.log("Quote or username not found in localStorage");
+    try {
+        console.log('Attempting to save quote:', { quote, username });
+        
+        const response = await fetch('http://localhost:4000/api/quotes/save', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                quote: quote,
+                username: username
+            })
+        });
+
+        console.log('Response status:', response.status);
+        
+        if (!response.ok) {
+            const errorData = await response.text();
+            console.error('Server response:', errorData);
+            throw new Error('Failed to save quote to database');
+        }
+
+        const result = await response.json();
+        console.log('Quote saved successfully:', result);
+
+        // Handle localStorage
+        let storedQuotes = [];
+        const existingQuotes = localStorage.getItem('quotes');
+        if (existingQuotes) {
+            try {
+                storedQuotes = JSON.parse(existingQuotes);
+                if (!Array.isArray(storedQuotes)) {
+                    storedQuotes = [];
+                }
+            } catch (error) {
+                console.error('Error parsing stored quotes:', error);
+                storedQuotes = [];
+            }
+        }
+
+        // Add to localStorage
+        storedQuotes.push({ quote: quote, username: username });
+        localStorage.setItem('quotes', JSON.stringify(storedQuotes));
+        console.log(`Quote added to localStorage: "${quote}" by ${username}`);
+
+    } catch (error) {
+        console.error('Error in addQuotes:', error);
+        setError(error.message || 'Failed to save quote. Please try again.');
     }
   }
 
