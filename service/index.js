@@ -5,6 +5,7 @@ const cors = require('cors'); //middleware, enables backend to accept requests f
 const cookieParser = require('cookie-parser'); //middleware, parses cookies (when a user logsin, you set an auth token in a cookie)
 const uuid = require('uuid'); //middleware, generates a unique id for each user
 const db = require('./database.js');
+const path = require('path');
 
 const corsOptions = {
     origin: true, // Allow all origins in development
@@ -20,6 +21,9 @@ app.use(cookieParser()); //middleware, parses cookies in requests
 
 // Add CORS middleware
 app.use(cors(corsOptions));
+
+// Serve static files from the React app build directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Debug middleware - add this first
 app.use((req, res, next) => {
@@ -55,11 +59,10 @@ app.get('/', (req, res) => {
     res.json({ message: 'Server is running!' }); // Send JSON instead of trying to serve HTML
   });
 
-// Add this code to service/index.js to cause Express static middleware to serve files from the public directory once your code has been deployed to your AWS server.
-app.use(express.static('public'));
-
-// SYNTAX FOR API ROUTES apiRouter.METHOD(PATH, MIDDLEWARE, HANDLER)
-    //
+// Test endpoint
+apiRouter.get('/test', (req, res) => {
+    res.json({ message: 'wazzup World' });
+});
 
 //create a new user
 apiRouter.post('/auth/create', async (req, res) => {
@@ -159,11 +162,6 @@ function setAuthCookie(res, authToken) {
 // GET /api/quotes/random – Get a random quote
 // GET /api/quotes/search – Search quotes by text
 // GET /api/quotes/author/:author – Get quotes by author
-
-// Test endpoint to verify server is working
-apiRouter.get('/test', (req, res) => {
-    res.json({ message: 'Server is working' });
-});
 
 // Quote save endpoint
 apiRouter.post('/quotes/save', async (req, res) => {
@@ -275,6 +273,11 @@ apiRouter.post('/quotes/:id/like', async (req, res) => {
       res.status(500).json({ error: 'Failed to like quote' });
     }
   });
+
+// Handle React routing, return all requests to React app
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
