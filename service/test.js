@@ -1,40 +1,41 @@
 const db = require('./database.js');
 
-async function testQuotes() {
+async function testLikedByUsers() {
   try {
     // Connect to database
     await db.connectToDatabase();
+    console.log('Connected to database');
     
-    // Test quotes with different likes and users
+    // Test quotes with different users who liked them
     const testQuotes = [
       {
         quote: "Stay hungry, stay foolish",
         author: "Steve Jobs",
-        likes: 15,
-        likedBy: ["alice@test.com", "bob@test.com", "charlie@test.com"]
+        likes: 3,
+        likedBy: ["Alice", "Bob", "Charlie"]
       },
       {
         quote: "Be the change you wish to see in the world",
         author: "Mahatma Gandhi",
-        likes: 10,
-        likedBy: ["alice@test.com", "david@test.com"]
+        likes: 2,
+        likedBy: ["David", "Eve"]
       },
       {
         quote: "Just do it",
         author: "Nike",
-        likes: 5,
-        likedBy: ["bob@test.com"]
+        likes: 1,
+        likedBy: ["Frank"]
       }
     ];
 
-    // Clear existing quotes
+    // Clear existing quotes first
     const collection = db.client.db('likedQuotes').collection('quotes');
     await collection.deleteMany({});
     console.log('Cleared existing quotes');
 
     // Insert test quotes
     await collection.insertMany(testQuotes);
-    console.log('Test quotes inserted successfully');
+    console.log('Test quotes with likes inserted successfully');
 
     // Fetch and display quotes to verify
     const quotes = await db.getTopQuotes();
@@ -42,7 +43,7 @@ async function testQuotes() {
     quotes.forEach((quote, index) => {
       console.log(`${index + 1}. "${quote.quote}" - ${quote.author}`);
       console.log(`   Likes: ${quote.likes}`);
-      console.log(`   Liked by: ${quote.likedBy.join(', ') || 'No likes yet'}`);
+      console.log(`   Liked by: ${quote.likedBy.join(', ')}`);
       console.log('---');
     });
 
@@ -53,4 +54,4 @@ async function testQuotes() {
   }
 }
 
-testQuotes();
+testLikedByUsers();

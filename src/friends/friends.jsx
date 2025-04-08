@@ -20,7 +20,13 @@ export function Friends() {
           throw new Error('Failed to fetch quotes');
         }
         const data = await response.json();
-        console.log('Fetched quotes:', data); // Debug log
+        console.log('Fetched quotes:', data); // Debug to show quote data
+        data.forEach(quote => {
+          console.log('quote', quote.quote);
+          console.log('likes', quote.likes);
+          console.log('likedby', quote.likedBy);
+          console.log('author', quote.author);
+        });
         setQuotes(data);
       } catch (err) {
         console.error('Error fetching quotes:', err);

@@ -52,11 +52,6 @@ export default function App() {
                 </li>
                )}
               <li className="nav-item">
-                <NavLink className="nav-link" to="quotes">
-                  Quotes
-                </NavLink>
-              </li>
-              <li className="nav-item">
                 <NavLink className="nav-link" to="about">
                   About
                 </NavLink>

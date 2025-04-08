@@ -6,6 +6,23 @@ const client = new MongoClient(url);
 const db = client.db('likedQuotes');
 const collection = db.collection('quotes');
 
+//keeping in track of the users that liked the quotes
+async function likeQuote(quoteId, userEmail) {
+    try {
+      await collection.updateOne(
+        { _id: new ObjectId(quoteId) },
+        { 
+          $inc: { likes: 1 },
+          $addToSet: { likedBy: userEmail } // Add user's email to likedBy array
+        }
+      );
+      return true;
+    } catch (error) {
+      console.error('Error liking quote:', error);
+      return false;
+    }
+  }
+
 //keeping in track of the quotes
 async function addQuote(quote, author) {
     const newQuote = {
@@ -61,5 +78,6 @@ module.exports = {
   getTopQuotes,
   addQuote,
   clearDatabase,
+  likeQuote,
   client
 };

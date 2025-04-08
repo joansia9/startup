@@ -220,6 +220,26 @@ apiRouter.delete('/quotes/clear', async (req, res) => {
     }
   });
 
+  //who liked the quote?
+  apiRouter.post('/quotes/:id/like', async (req, res) => {
+    try {
+      // Get the user from your existing auth system
+      const authToken = req.cookies.token;
+      const user = users.find(u => u.token === authToken);
+      
+      if (!user) {
+        return res.status(401).json({ error: 'Must be logged in to like quotes' });
+      }
+  
+      // Like the quote with the user's email
+      await db.likeQuote(req.params.id, user.email);
+      res.json({ success: true });
+    } catch (error) {
+      console.error('Error:', error);
+      res.status(500).json({ error: 'Failed to like quote' });
+    }
+  });
+
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
