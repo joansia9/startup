@@ -1,16 +1,11 @@
 // These lines MUST come first
-const express = require('express');
-const app = express();
-const axios = require('axios');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const uuid = require('uuid');
+const express = require('express'); //middleware, starts the server
+const app = express(); 
+const cors = require('cors'); //middleware, enables backend to accept requests from different domains/origins
+const cookieParser = require('cookie-parser'); //middleware, parses cookies (when a user logsin, you set an auth token in a cookie)
+const uuid = require('uuid'); //middleware, generates a unique id for each user
+const db = require('./database.js');
 
-// Add middleware for parsing JSON, cookies, and CORS
-app.use(express.json());
-app.use(cookieParser());
-
-// Configure CORS with specific options
 const corsOptions = {
     origin: true, // Allow all origins in development
     credentials: true,
@@ -19,8 +14,13 @@ const corsOptions = {
     exposedHeaders: ['Set-Cookie']
 };
 
+// Add middleware for parsing JSON, cookies, and CORS
+app.use(express.json()); //middleware, parses JSON bodies in requests
+app.use(cookieParser()); //middleware, parses cookies in requests
+
 // Add CORS middleware
 app.use(cors(corsOptions));
+
 
 // Add debugging middleware
 app.use((req, res, next) => {
@@ -47,6 +47,11 @@ app.get('/api/test', (req, res) => {
     console.log('Test request received');
     res.json({ message: 'wazzup World' });
 });
+
+// Test endpoint to make sure server is running
+app.get('/', (req, res) => {
+    res.json({ message: 'Server is running!' }); // Send JSON instead of trying to serve HTML
+  });
 
 // Add this code to service/index.js to cause Express static middleware to serve files from the public directory once your code has been deployed to your AWS server.
 app.use(express.static('public'));
@@ -122,6 +127,7 @@ async function findUser(email) {
 apiRouter.delete('/auth/logout', async (req, res) => {
     console.log('logout received');
     try {
+
         //clear the cookie
         //from class cookies mean the token
         res.clearCookie(authCookieName);
@@ -189,6 +195,30 @@ apiRouter.post("/quotes", async (req, res) => {
     //curl -X POST http://localhost:4000/api/quotes
     //curl -X POST http://localhost:4000/api/quotes -H "Content-Type: application/json"
 });
+
+//API endpoints for the top quotes function in database.js
+apiRouter.get('/quotes/top', async (req, res) => {
+    try {
+        const topQuotes = await db.getTopQuotes();
+        console.log('Sending quotes:', topQuotes); //debugggggg
+        res.json(topQuotes);
+    } catch (error) {
+        console.error('Error:', error); //debugggggggggg 
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+apiRouter.delete('/quotes/clear', async (req, res) => {
+    try {
+      const collection = db.client.db('likedQuotes').collection('quotes');
+      await collection.deleteMany({});
+      console.log('Database cleared successfully');
+      res.json({ message: 'Database cleared successfully' });
+    } catch (error) {
+      console.error('Error:', error);
+      res.status(500).json({ error: 'Failed to clear database' });
+    }
+  });
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);

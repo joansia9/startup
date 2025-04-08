@@ -6,12 +6,32 @@ export function Friends() {
 
   // Load quotes from localStorage when the component mounts
   React.useEffect(() => {
-    const storedQuotes = localStorage.getItem('quotes');
-  
-    if (storedQuotes) {
-      setQuotes(JSON.parse(storedQuotes)); // Parse 
-    }
+    //const storedQuotes = localStorage.getItem('quotes'); //we dont need this because we are using the mongodb
+
+    // if (storedQuotes) {
+    //   setQuotes(JSON.parse(storedQuotes)); // Parse 
+    // }
+
+    //for the database we need to change the fetch URL to http://localhost:4000/api/quotes/top
+    const fetchQuotes = async () => { 
+      try {
+        const response = await fetch('http://localhost:4000/api/quotes/top');
+        if (!response.ok) {
+          throw new Error('Failed to fetch quotes');
+        }
+        const data = await response.json();
+        console.log('Fetched quotes:', data); // Debug log
+        setQuotes(data);
+      } catch (err) {
+        console.error('Error fetching quotes:', err);
+      }
+    };
+
+    fetchQuotes();
   }, []);
+
+
+
 
   return (
     <main className="friendly stuff">
@@ -23,7 +43,8 @@ export function Friends() {
           <tr>
             <th>#</th>
             <th>Quote</th>
-            <th>User</th>
+            <th>Likes</th>
+            <th>Liked By</th>
           </tr>
         </thead>
         <tbody>
@@ -31,10 +52,14 @@ export function Friends() {
             // Display each quote in a table row
             quotes.map((quote, index) => (
               <tr key={index}>
-              
                 <td>{index + 1}</td>
                 <td>{quote.quote}</td>
-                <td>{quote.username}</td>
+                <td>{quote.likes}</td>
+                <td>
+                  {quote.likedBy?.length > 0 ? //are there likes?
+                     quote.likedBy.join(', ') //diplay them and join them with commas //if not, display no likes yet
+                    : 'No likes yet'} 
+                </td>
               </tr>
             ))
           ) : (
