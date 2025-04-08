@@ -20,12 +20,14 @@ export function Friends() {
   useEffect(() => {
     const fetchQuotes = async () => { 
       try {
+        console.log('Fetching quotes...');
         const response = await fetch('http://localhost:4000/api/quotes/top');
         if (!response.ok) {
           throw new Error('Failed to fetch quotes');
         }
         const data = await response.json();
-        console.log('Fetched quotes:', data); // Debug to show quote data
+        console.log('Total quotes received:', data.length); // Debug log
+        console.log('All quotes:', data); // Debug log
         setQuotes(data);
       } catch (err) {
         console.error('Error fetching quotes:', err);
@@ -35,10 +37,16 @@ export function Friends() {
     fetchQuotes();
   }, []);
 
+  // Debug log when quotes state changes
+  useEffect(() => {
+    console.log('Quotes state updated:', quotes.length, 'quotes');
+  }, [quotes]);
+
   return (
     <main className="friendly stuff">
       
       <h1>Quotes Recently Liked</h1>
+      {/* <div>Total Quotes: {quotes.length}</div> Debug display */}
 
       <table className="table table-warning table-striped-columns">
         <thead>
@@ -55,9 +63,14 @@ export function Friends() {
                 <td>{index + 1}</td>
                 <td>{typeof quote.quote === 'string' ? quote.quote : JSON.stringify(quote.quote)}</td>
                 <td>
-                  {quote.likedBy && quote.likedBy.length > 0 ? 
-                    quote.likedBy.join(', ')
-                    : 'No likes yet'}
+                  {quote.likedBy && Array.isArray(quote.likedBy) ? (
+                  <ul className="liked-by-list">
+                    {quote.likedBy.map((username, i) => (
+                      <li key={i}>{username}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  'No likes yet')}
                 </td>
               </tr>
             ))

@@ -176,15 +176,8 @@ apiRouter.post('/quotes/save', async (req, res) => {
             return res.status(400).json({ error: 'Quote and username are required' });
         }
 
-        const collection = db.client.db('likedQuotes').collection('quotes');
-        const newQuote = {
-            quote: quote,
-            likes: 1,
-            likedBy: [username]
-        };
-
-        await db.connectToDatabase(); // Make sure we're connected
-        const result = await collection.insertOne(newQuote);
+        await db.connectToDatabase();
+        const result = await db.addQuoteWithUser(quote, username);
         console.log('Quote saved successfully:', result);
         
         res.status(201).json({ 
@@ -236,63 +229,55 @@ apiRouter.post("/quotes", async (req, res) => {
     //curl -X POST http://localhost:4000/api/quotes -H "Content-Type: application/json"
 });
 
-//API endpoints for the top quotes function in database.js
-// apiRouter.get('/quotes/top', async (req, res) => {
-//     try {
-//         const topQuotes = await db.getTopQuotes();
-//         console.log('Sending quotes:', topQuotes); //debugggggg
-//         res.json(topQuotes);
-//     } catch (error) {
-//         console.error('Error:', error); //debugggggggggg 
-//         res.status(500).json({ error: 'Internal server error' });
-//     }
-// });
+// API endpoints for the top quotes function in database.js
+apiRouter.get('/quotes/top', async (req, res) => {
+    try {
+        await db.connectToDatabase();
+        const topQuotes = await db.getTopQuotes();
+        console.log('Total quotes in database:', topQuotes.length);
+        console.log('First few quotes:', topQuotes.slice(0, 3));
+        res.json(topQuotes);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 apiRouter.delete('/quotes/clear', async (req, res) => {
     try {
-      const collection = db.client.db('likedQuotes').collection('quotes');
-      await collection.deleteMany({});
-      console.log('Database cleared successfully');
-      res.json({ message: 'Database cleared successfully' });
+        await db.connectToDatabase();
+        await db.clearDatabase();
+        res.json({ message: 'Database cleared successfully' });
     } catch (error) {
-      console.error('Error:', error);
-      res.status(500).json({ error: 'Failed to clear database' });
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Failed to clear database' });
     }
-  });
+});
 
   //who liked the quote?
 apiRouter.post('/quotes/:id/like', async (req, res) => {
     try {
-      let username;
-      
-      // First try to get username from request body (localStorage)
-      if (req.body.username) {
-        username = req.body.username;
-      } else {
-        // Fallback to auth token method
-        const authToken = req.cookies.token;
-        const user = users.find(u => u.token === authToken);
-        
-        if (!user) {
-          return res.status(401).json({ error: 'Must be logged in to like quotes' });
+        let username = req.body.username;
+        if (!username) {
+            const authToken = req.cookies.token;
+            const user = users.find(u => u.token === authToken);
+            if (!user) {
+                return res.status(401).json({ error: 'Must be logged in to like quotes' });
+            }
+            username = user.email;
         }
-        username = user.email;
-      }
   
-      // Like the quote with the username
-      await db.likeQuote(req.params.id, username);
-      res.json({ success: true });
+        await db.connectToDatabase();
+        await db.likeQuote(req.params.id, username);
+        res.json({ success: true });
     } catch (error) {
-      console.error('Error:', error);
-      res.status(500).json({ error: 'Failed to like quote' });
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Failed to like quote' });
     }
-  });
+});
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
-    console.log('Available endpoints:');
-    console.log('- POST /api/quotes/save');
-    console.log('- POST /api/quotes');
 });
 
 //api https://github.com/public-apis/public-apis?tab=readme-ov-file

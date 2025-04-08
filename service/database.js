@@ -9,7 +9,7 @@ const collection = db.collection('quotes');
 //keeping in track of the users that liked the quotes
 async function likeQuote(quoteId, username) {
     try {
-      if (!username) {
+      if (!username) { //checking for user 
         console.error('No username provided');
         return false;
       }
@@ -20,7 +20,7 @@ async function likeQuote(quoteId, username) {
         { _id: new ObjectId(quoteId) }, // Using imported ObjectId
         { 
           $inc: { likes: 1 },
-          $addToSet: { likedBy: username }
+          $addToSet: { likedBy: username } //so the username appears only once
         }
       );
       
@@ -58,9 +58,9 @@ async function addQuoteWithUser(quote, username) {
 // Get top liked quotes
 async function getTopQuotes() {
   const query = {}; //get all the quotes 
-  const options = {
-    sort: { likes: -1 }, //sort the quotes in descending order of likes
-    limit: 10, //just the top 10 (can change)
+  const options = { 
+    sort: { likes: -1 }, // Sort by likes in descending order
+    limit: 30, //just the top 10 (can change)
     projection: {  // FIXME: Add this to specify which fields to return
       quote: 1,
       author: 1,
@@ -100,6 +100,5 @@ module.exports = {
   addQuoteWithUser,
   clearDatabase,
   likeQuote,
-  updateQuoteLikesFromStorage,
   client
 };
