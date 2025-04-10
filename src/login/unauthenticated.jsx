@@ -20,7 +20,7 @@ export function Unauthenticated(props) {
     try {
       //endpoint is the route to the server
       //grabbing the json data from the SERVER
-      const response = await fetch(`http://localhost:4000/api/auth/login`, {
+      const response = await fetch(`/api/auth/login`, {
         method: 'post',
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
@@ -47,7 +47,7 @@ export function Unauthenticated(props) {
     try {
       //endpoint is the route to the server
       //grabbing the json data from the SERVER
-      const response = await fetch(`http://localhost:4000/api/auth/create`, {
+      const response = await fetch(`/api/auth/create`, {
         method: 'post',
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
